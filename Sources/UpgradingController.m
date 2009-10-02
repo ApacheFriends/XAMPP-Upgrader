@@ -14,6 +14,14 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 
 @implementation UpgradingController
 
+- (void) dealloc
+{
+	[views release];
+	
+	[super dealloc];
+}
+
+
 - (void)awakeFromNib {
 	/* Set the background of our window to white. */
 	[[self window] setBackgroundColor:[NSColor whiteColor]];
@@ -21,6 +29,11 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	/* And now load all view. */
 	[self loadWelcomeView];
 	[self loadProgressView];
+	
+	/* Store an array which all views. For easier use :) */
+	views = [[NSDictionary dictionaryWithObjectsAndKeys:welcomeView, XUWelcomeScreen,
+			  progressView, XUProgressScreen,
+			  Nil] retain];
 	
 	/* Show the first view */
 	[self showView:XUWelcomeScreen];
@@ -38,6 +51,8 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 										 NSHeight([welcomeView frame]) 
 										 - NSHeight([welcomeTextView frame]) 
 										 + [welcomeTextView heightToFitWithWidth:NSWidth([welcomeTextView frame])])];
+	
+	[string release];
 }
 
 - (void) loadProgressView
@@ -48,26 +63,24 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 
 - (void) showView:(NSString *)name
 {
+	float paddingTop;
+	float paddingBottom;
+	float newHeight;
+	NSView* view;
+	
 	NSParameterAssert(name != Nil);
 	
 	/* Look for our content view. */
-	NSDictionary* views = [NSDictionary dictionaryWithObjectsAndKeys:welcomeView, XUWelcomeScreen,
-						   progressView, XUProgressScreen,
-						   Nil];
-	NSView* view = [views objectForKey:name];
+	view = [views objectForKey:name];
 	NSParameterAssert(view != Nil);
 	
 	/* Remove all old views */
 	[[contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
 	/* Find out the paddings of the content view */
-	float paddingTop = 0.f;
-	float paddingBottom = 0.f;
-	
 	paddingBottom = [contentView frame].origin.y;
 	paddingTop = NSHeight([[self window] frame]) - NSHeight([contentView frame]) - paddingBottom;
-
-	float newHeight = NSHeight([view frame]) + paddingTop + paddingBottom;
+	newHeight = NSHeight([view frame]) + paddingTop + paddingBottom;
 	
 	[[self window] setFrame:NSMakeRect([[self window] frame].origin.x,
 									   [[self window] frame].origin.y - newHeight + NSHeight([[self window] frame]),

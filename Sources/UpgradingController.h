@@ -15,6 +15,7 @@ extern NSString* XUProgressScreen;
 	IBOutlet NSView*		contentView;
 	IBOutlet NSView*		welcomeView;
 	IBOutlet NSView*		progressView;
+	NSDictionary*			views;
 	
 	/* Welcome View */
 	IBOutlet NSTextView*	welcomeTextView;
