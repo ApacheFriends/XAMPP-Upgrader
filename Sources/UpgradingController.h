@@ -30,6 +30,10 @@ extern NSString* XUProgressScreen;
 - (void) loadProgressView;
 - (void) showView:(NSString*)view;
 
+- (NSProgressIndicator*) progressIndicator;
+- (NSTextField*) progressText;
+- (NSTextField*) progressSubtext;
+
 - (IBAction) startUpgrade:(id)sender;
 
 @end

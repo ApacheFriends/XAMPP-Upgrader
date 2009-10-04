@@ -204,7 +204,7 @@
 								<reference key="NSDocView" ref="398572891"/>
 								<reference key="NSBGColor" ref="844227695"/>
 								<object class="NSCursor" key="NSCursor">
-									<string key="NSHotSpot">{4, 4}</string>
+									<string key="NSHotSpot">{1, -1}</string>
 									<int key="NSCursorType">0</int>
 								</object>
 								<int key="NScvFlags">2</int>
@@ -276,8 +276,8 @@
 						<reference key="NSSuperview" ref="1046545662"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="772982849">
-							<int key="NSCellFlags">68288064</int>
-							<int key="NSCellFlags2">272761856</int>
+							<int key="NSCellFlags">67239488</int>
+							<int key="NSCellFlags2">272763136</int>
 							<string key="NSContents"/>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande</string>
@@ -292,8 +292,13 @@
 								<reference key="NSColor" ref="724103277"/>
 							</object>
 							<object class="NSColor" key="NSTextColor">
-								<int key="NSColorSpace">1</int>
-								<bytes key="NSRGB">MC40OTQ1NjUxODg5IDAuNDk0NTY1MTg4OSAwLjQ5NDU2NTE4ODkAA</bytes>
+								<int key="NSColorSpace">6</int>
+								<string key="NSCatalogName">System</string>
+								<string key="NSColorName">disabledControlTextColor</string>
+								<object class="NSColor" key="NSColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC4zMzMzMzMzNDMzAA</bytes>
+								</object>
 							</object>
 						</object>
 					</object>
@@ -662,10 +667,17 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Sources/Additions/NSObject+Additions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NSTextView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">NSTextView+Additions.h</string>
+						<string key="minorKey">Sources/Additions/NSTextView+Additions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -700,7 +712,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">UpgradingController.h</string>
+						<string key="minorKey">Sources/UpgradingController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -708,7 +720,7 @@
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">XUFlippedView.h</string>
+						<string key="minorKey">Sources/Views/XUFlippedView.h</string>
 					</object>
 				</object>
 			</object>

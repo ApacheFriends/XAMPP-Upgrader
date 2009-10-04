@@ -1,0 +1,10 @@
+/* 
+   Upgrade.strings
+   XAMPP Upgrader
+
+   Created by Christian Speich on 04.10.09.
+   Copyright 2009 __MyCompanyName__. All rights reserved.
+ */
+
+/* Action description displayed when the user is asked to authorize. */
+"Authorize" = "Authorize…";
