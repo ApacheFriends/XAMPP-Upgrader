@@ -12,16 +12,16 @@
 
 @interface Upgrader : NSObject {
 	NSProgressIndicator*	progressIndicator;
-	NSTextField*			progressText;
-	NSTextField*			progressSubtext;
+	NSTextField*			progressTextField;
+	NSTextField*			progressSubtextField;
 }
 
 - (void) setProgressIndicator:(NSProgressIndicator*)progressIndicator;
 - (NSProgressIndicator*) progressIndicator;
-- (void) setProgressText:(NSTextField*)progressText;
-- (NSTextField*) progressText;
-- (void) setProgressSubtext:(NSTextField*)progressSubtext;
-- (NSTextField*) progressSubtext;
+- (void) setProgressTextField:(NSTextField*)progressTextField;
+- (NSTextField*) progressTextField;
+- (void) setProgressSubtextField:(NSTextField*)progressSubtextField;
+- (NSTextField*) progressSubtextField;
 
 - (NSError*) upgrade;
 

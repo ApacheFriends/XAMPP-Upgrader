@@ -165,11 +165,11 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 		 And after that we hand over the upgrading to this object. */
 		
 		[upgrader setProgressIndicator:progressIndicator];
-		[upgrader setProgressText:progressText];
-		[upgrader setProgressSubtext:progressSubtext];
+		[upgrader setProgressTextField:progressText];
+		[upgrader setProgressSubtextField:progressSubtext];
 		
 		// Run the real upgrade
-		[upgrader upgrade];
+		error = [upgrader upgrade];
 	}
 	@catch (NSException * e) {
 		// TODO: Error handling
@@ -177,6 +177,7 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	}
 	@finally {
 		[upgrader quit];
+		[[self mainThreadProxy] showView:XUWelcomeScreen];
 		[pool release];
 	}
 }
@@ -201,7 +202,6 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 
 	/* Get the full path for our helper tool */
 	commandoPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"xampp-upgrader"];
-	NSLog(@"Commando path %@", commandoPath);
 	if (!commandoPath) {
 		//TODO: Create an error object
 		return Nil;

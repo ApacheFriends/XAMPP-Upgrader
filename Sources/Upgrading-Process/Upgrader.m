@@ -22,31 +22,31 @@
 	return progressIndicator;
 }
 
-- (void) setProgressText:(NSTextField*)text
+- (void) setProgressTextField:(NSTextField*)textField
 {
-	progressText = text;
+	progressTextField = textField;
 }
 
-- (NSTextField*) progressText
+- (NSTextField*) progressTextField
 {
-	return progressText;
+	return progressTextField;
 }
 
-- (void) setProgressSubtext:(NSTextField*)subtext
+- (void) setProgressSubtextField:(NSTextField*)subtextField
 {
-	progressSubtext = subtext;
+	progressSubtextField = subtextField;
 }
 
-- (NSTextField*) progressSubtext
+- (NSTextField*) progressSubtextField
 {
-	return progressSubtext;
+	return progressSubtextField;
 }
 
 - (NSError*) upgrade
 {
 	NSError* error = Nil;
 	
-	[[self progressSubtext] setStringValue:@"Reading upgrade content…"];
+	[[self progressSubtextField] setStringValue:@"Reading upgrade content…"];
 	
 	[progressIndicator setIndeterminate:NO];
 	[progressIndicator setDoubleValue:0.1f];
