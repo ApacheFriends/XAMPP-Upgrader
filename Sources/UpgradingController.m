@@ -170,6 +170,9 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 		
 		// Run the real upgrade
 		error = [upgrader upgrade];
+		if (error)
+			[self handleError:error];
+		
 	}
 	@catch (NSException * e) {
 		// TODO: Error handling
@@ -266,8 +269,13 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 
 - (void) handleError:(NSError*)error
 {
+	if ([[error domain] isEqualToString:NSCocoaErrorDomain]
+		&& [error code] == NSUserCancelledError) {
+		[self showView:XUWelcomeScreen];
+	}
 	// Just a fix implementation
 	[NSApp presentError:error];
+	NSLog(@"Error: %@", error);
 }
 
 - (AuthorizationRef) authorizeWithError:(NSError**)error
@@ -282,7 +290,14 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	
 	if (status != errAuthorizationSuccess) {
 		if (error != Nil)
-			*error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+			if (status == errAuthorizationCanceled)
+				*error = [NSError errorWithDomain:NSCocoaErrorDomain 
+											 code:NSUserCancelledError 
+										 userInfo:Nil];
+			else
+				*error = [NSError errorWithDomain:NSOSStatusErrorDomain 
+											 code:status 
+										 userInfo:nil];
 		return NULL;
 	}
 	
@@ -294,8 +309,14 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	status = AuthorizationCopyRights(authRef, &rights, NULL, flags, NULL);
 	
 	if (status != errAuthorizationSuccess) {
-		if (error != Nil)
-			*error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+		if (status == errAuthorizationCanceled)
+			*error = [NSError errorWithDomain:NSCocoaErrorDomain 
+										 code:NSUserCancelledError 
+									 userInfo:Nil];
+		else
+			*error = [NSError errorWithDomain:NSOSStatusErrorDomain 
+										 code:status 
+									 userInfo:nil];
 		return NULL;
 	}
 	
