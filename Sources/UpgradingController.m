@@ -257,7 +257,7 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	// And now get the upgrader object
 	/* TODO: We should pass an special xampp-upgrader right instand of the kAuthorizationRightExecute
 	   to prevent bad processes that may listening on the xampp-control name get's this execute right
-	   and start's root processes even if they are not allowed to */
+	   and start's root processes even if it is not allowed to */
 	upgrader = [accessControl newUpgraderWithAuthorizationExternalForm:extForm];
 	if (!upgrader) {
 		//TODO: Create an error object
@@ -289,15 +289,19 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, flags, &authRef);
 	
 	if (status != errAuthorizationSuccess) {
-		if (error != Nil)
-			if (status == errAuthorizationCanceled)
+		if (error != Nil) {
+			if (status == errAuthorizationCanceled) {
 				*error = [NSError errorWithDomain:NSCocoaErrorDomain 
 											 code:NSUserCancelledError 
 										 userInfo:Nil];
-			else
+			}
+			else {
 				*error = [NSError errorWithDomain:NSOSStatusErrorDomain 
 											 code:status 
 										 userInfo:nil];
+			}
+		}
+		
 		return NULL;
 	}
 	
@@ -309,14 +313,19 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	status = AuthorizationCopyRights(authRef, &rights, NULL, flags, NULL);
 	
 	if (status != errAuthorizationSuccess) {
-		if (status == errAuthorizationCanceled)
-			*error = [NSError errorWithDomain:NSCocoaErrorDomain 
-										 code:NSUserCancelledError 
-									 userInfo:Nil];
-		else
-			*error = [NSError errorWithDomain:NSOSStatusErrorDomain 
-										 code:status 
-									 userInfo:nil];
+		if (error != Nil) {
+			if (status == errAuthorizationCanceled) {
+				*error = [NSError errorWithDomain:NSCocoaErrorDomain 
+											 code:NSUserCancelledError 
+										 userInfo:Nil];
+			}
+			else {
+				*error = [NSError errorWithDomain:NSOSStatusErrorDomain 
+											 code:status 
+										 userInfo:nil];
+			}
+		}
+		
 		return NULL;
 	}
 	

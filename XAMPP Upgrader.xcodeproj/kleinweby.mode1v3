@@ -335,7 +335,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>921D34B7109DD74A00C5A8FE</string>
+										<string>926DE430109E202E00710721</string>
 										<key>history</key>
 										<array>
 											<string>92A378431073E1A20062C96D</string>
@@ -358,7 +358,7 @@
 											<string>92538144109DB8BE000D4099</string>
 											<string>92538146109DB8BE000D4099</string>
 											<string>921D34B5109DD74A00C5A8FE</string>
-											<string>921D34B6109DD74A00C5A8FE</string>
+											<string>921D34B7109DD74A00C5A8FE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -416,9 +416,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>921D3482109DBDD300C5A8FE</string>
+				<string>926DE431109E202E00710721</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>921D3483109DBDD300C5A8FE</string>
+				<string>926DE432109E202E00710721</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -556,10 +556,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>921D348D109DBDD300C5A8FE</string>
-		<string>921D348E109DBDD300C5A8FE</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>92791DD41073A5AA00865362</string>
 		<string>/Users/kleinweby/Projekte/ApacheFriends/XAMPP Upgrader/XAMPP Upgrader.xcodeproj</string>
 	</array>
@@ -641,7 +637,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>92791DD41073A5AA00865362</string>
-				<string>921D3484109DBDD300C5A8FE</string>
+				<string>926DE433109E202E00710721</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
