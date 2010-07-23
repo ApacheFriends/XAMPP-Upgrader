@@ -1,10 +1,27 @@
-//
-//  UpgradingController.m
-//  XAMPP Upgrader
-//
-//  Created by Christian Speich on 30.09.09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+/*
+ 
+ XAMPP
+ Copyright (C) 2010 by Apache Friends
+ 
+ Authors of this file:
+ - Christian Speich <kleinweby@apachefriends.org>
+ 
+ This file is part of XAMPP.
+ 
+ XAMPP is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ XAMPP is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with XAMPP.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ */
 
 #include <Security/Security.h>
 #include <unistd.h>
@@ -14,6 +31,8 @@
 #import "NSObject+Additions.h"
 #import "Upgrader.h"
 #import "AccessControlProtocol.h"
+
+#import "UpgradeErrors.h"
 
 NSString* XUWelcomeScreen = @"XUWelcomeScreen";
 NSString* XUProgressScreen = @"XUProgressScreen";
@@ -74,7 +93,8 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 {
 	NSAttributedString* string;
 	
-	string = [[NSAttributedString alloc] initWithPath:[[NSBundle mainBundle] pathForResource:@"Welcome" ofType:@"rtfd"] documentAttributes:Nil];
+	string = [[NSAttributedString alloc] initWithPath:[[NSBundle mainBundle] pathForResource:@"Welcome" ofType:@"rtfd"] 
+								   documentAttributes:Nil];
 	
 	[[welcomeTextView textStorage] setAttributedString:string];
 	
@@ -124,6 +144,28 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	[contentView addSubview:view];
 }
 
+- (void) setProgress:(double)progress
+{
+	if (progress < 0.f) {
+		[progressIndicator setIndeterminate:YES];
+	}
+	else {
+		[progressIndicator setIndeterminate:NO];
+		[progressIndicator setDoubleValue:progress];
+	}
+
+}
+
+- (void) setActionName:(NSString*)name
+{
+	[progressText setStringValue:name];
+}
+
+- (void) setActionDescription:(NSString*)description
+{
+	[progressSubtext setStringValue:description];
+}
+
 - (IBAction) startUpgrade:(id)sender
 {
 	/* Show the progress screen */
@@ -158,15 +200,9 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	}
 	
 	@try {
-		/* Ok, we now have our Upgrader process.
-		 Now we give the upgrader the possibility to display
-		 the status properly by giving it acces to the
-		 progressIndicator, -Text and -Subtext.
-		 And after that we hand over the upgrading to this object. */
+		/* Ok, we now have our Upgrader process. */
 		
-		[upgrader setProgressIndicator:progressIndicator];
-		[upgrader setProgressTextField:progressText];
-		[upgrader setProgressSubtextField:progressSubtext];
+		[upgrader setDelegate:self];
 		
 		// Run the real upgrade
 		error = [upgrader upgrade];
@@ -206,7 +242,10 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	/* Get the full path for our helper tool */
 	commandoPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"xampp-upgrader"];
 	if (!commandoPath) {
-		//TODO: Create an error object
+		if (error)
+			*error = [NSError errorWithDomain:UpgradeErrorDomain 
+										 code:errUpgradeHelperMissing 
+									 userInfo:Nil];
 		return Nil;
 	}
 
@@ -230,16 +269,22 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 		}
 	}
 	
-	/* Woops, still no connection? -  Not so good*/
+	/* Woops, still no connection? -  Not so good */
 	if (!connection) {
-		//TODO: Create an error object
+		if (error)
+			*error = [NSError errorWithDomain:UpgradeErrorDomain 
+										 code:errConnectUpgradeHelper 
+									 userInfo:Nil];
 		return Nil;
 	}
 	
 	/* Get the access control object */
 	accessControl = (id<AccessControlProtocol>)[connection rootProxy];
 	if (!accessControl) {
-		//TODO: Create an error object
+		if (error)
+			*error = [NSError errorWithDomain:UpgradeErrorDomain 
+										 code:errAccessControlGet 
+									 userInfo:Nil];
 		return Nil;
 	}
 
@@ -260,7 +305,10 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	   and start's root processes even if it is not allowed to */
 	upgrader = [accessControl newUpgraderWithAuthorizationExternalForm:extForm];
 	if (!upgrader) {
-		//TODO: Create an error object
+		if (error)
+			*error = [NSError errorWithDomain:UpgradeErrorDomain 
+										 code:errAccessControlDenied 
+									 userInfo:Nil];
 		return Nil;
 	}
 		

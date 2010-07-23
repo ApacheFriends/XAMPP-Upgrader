@@ -25,12 +25,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class UpgradingController;
 
-@interface XAMPP_UpgraderAppDelegate : NSObject {
-	UpgradingController* controller;
-    NSWindow *window;
-	IBOutlet NSTextView *textView;
-}
+@protocol UpgraderDelegateProtocol
+
+- (void) setProgress:(double)progress;
+
+- (void) setActionName:(NSString*)name;
+- (void) setActionDescription:(NSString*)description;
 
 @end

@@ -23,14 +23,21 @@
  
  */
 
-#import <Cocoa/Cocoa.h>
+NSString* UpgradeErrorDomain = @"UpgradeErrorDomain";
 
-@class UpgradingController;
-
-@interface XAMPP_UpgraderAppDelegate : NSObject {
-	UpgradingController* controller;
-    NSWindow *window;
-	IBOutlet NSTextView *textView;
-}
-
-@end
+enum {
+	/* Upgrade corrupt errors */
+	errUpgradeHelperMissing = 5001,
+	errUpgradeBundleMissing = 5002,
+	
+	/* Get upgrade errors */
+	errConnectUpgradeHelper = 6001,
+	errAccessControlGet = 6002,
+	errAccessControlDenied = 6003,
+	
+	/* Prepare errors */
+	errGetTempDir = 7001,
+	errCreateTempDir = 7002,
+	errRemoveTempDir = 7003,
+	errUnpackBundleFailed = 7011,
+};

@@ -1,68 +1,377 @@
-//
-//  Upgrader.m
-//  XAMPP Upgrader
-//
-//  Created by Christian Speich on 02.10.09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+/*
+ 
+ XAMPP
+ Copyright (C) 2010 by Apache Friends
+ 
+ Authors of this file:
+ - Christian Speich <kleinweby@apachefriends.org>
+ 
+ This file is part of XAMPP.
+ 
+ XAMPP is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ XAMPP is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with XAMPP.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ */
 
 #import "Upgrader.h"
 #import "UpgradingController.h"
 #include <unistd.h>
+#import "Action.h"
+
+#import "UpgradeErrors.h"
+
+@interface Upgrader(Steps)
+
+- (BOOL) setupTempDirWithError:(NSError**)error;
+- (BOOL) tearDownTempDirWithError:(NSError**)error;
+
+- (BOOL) unpackContentWithError:(NSError**)error;
+- (BOOL) readContent;
+
+@end
+
+@interface Upgrader()
+
+- (void) setApplicationPath:(NSString*)path;
+- (void) setVersionFile:(NSString*)file;
+- (void) setVersion:(NSString*)version;
+- (void) setUpgradeableVersions:(NSSet*)versions;
+- (void) setActions:(NSArray*)actions;
+
+@end
+
 
 @implementation Upgrader
 
-- (void) setProgressIndicator:(NSProgressIndicator*)indicator
+- (void) setDelegate:(id<UpgraderDelegateProtocol>)_delegate
 {
-	progressIndicator = indicator;
+	delegate = _delegate;
 }
 
-- (NSProgressIndicator*) progressIndicator
+- (id<UpgraderDelegateProtocol>) delegate
 {
-	return progressIndicator;
-}
-
-- (void) setProgressTextField:(NSTextField*)textField
-{
-	progressTextField = textField;
-}
-
-- (NSTextField*) progressTextField
-{
-	return progressTextField;
-}
-
-- (void) setProgressSubtextField:(NSTextField*)subtextField
-{
-	progressSubtextField = subtextField;
-}
-
-- (NSTextField*) progressSubtextField
-{
-	return progressSubtextField;
+	return delegate;
 }
 
 - (NSError*) upgrade
 {
 	NSError* error = Nil;
 	
-	[[self progressSubtextField] setStringValue:@"Reading upgrade content…"];
+	[[self delegate] setActionName:@"Prepare Upgrade…"];
+	[[self delegate] setActionDescription:@"Reading upgrade content…"];
+
+	/* First we need an temporary directory to unpack our upgrade in */
+	if (![self setupTempDirWithError:&error]) {
+	    return error;	
+	}
 	
-	[progressIndicator setIndeterminate:NO];
-	[progressIndicator setDoubleValue:0.1f];
+	/* Unpack the upgrade content to our temp dir */
+	if (![self unpackContentWithError:&error]) {
+		return error;
+	}
+	
+	if (![self readContent]) {
+		return error;
+	}
+	
+	/* We're done with everything, remove the temp dir */
+	if (![self tearDownTempDirWithError:&error]) {
+		return error;
+	}
+	
+	NSLog(@"Temporary dir: %@", tempDir);
+	
+	[[self delegate] setProgress:0.1];
 	
 	for (int i = 1; i < 11; i++) {
 		sleep(1);
-		[[self progressIndicator] setDoubleValue:i*10.f];
+		[[self delegate] setProgress:i*10.f];
 	}
 	
 	return error;
 }
 
+- (void) dealloc
+{
+	[tempDir release];
+	
+	[self setApplicationPath:Nil];
+	[self setVersionFile:Nil];
+	[self setVersion:Nil];
+	[self setUpgradeableVersions:Nil];
+	[self setActions:Nil];
+	
+	[super dealloc];
+}
+
+
 - (oneway void) quit
 {
 	NSLog(@"Quit...");
 	exit(0);
+}
+
+- (NSString*) applicationPath
+{
+	return applicationPath;
+}
+
+- (NSString*) versionFile
+{
+	return versionFile;
+}
+
+- (NSString*) version
+{
+	return version;
+}
+
+- (NSSet*) upgradeableVersions
+{
+	return upgradeableVersions;
+}
+
+- (NSArray*) actions
+{
+	return actions;
+}
+
+- (void) setApplicationPath:(NSString*)path
+{
+	[applicationPath release];
+	applicationPath = [path copy];
+}
+
+- (void) setVersionFile:(NSString*)file
+{
+	[versionFile release];
+	versionFile = [file copy];
+}
+
+- (void) setVersion:(NSString*)_version
+{
+	[version release];
+	version = [_version copy];
+}
+
+- (void) setUpgradeableVersions:(NSSet*)versions
+{
+	[upgradeableVersions release];
+	upgradeableVersions = [versions copy];
+}
+
+- (void) setActions:(NSArray*)_actions
+{
+	[actions release];
+	actions = [_actions copy];
+}
+
+@end
+
+@implementation Upgrader(Steps)
+
+- (BOOL) setupTempDirWithError:(NSError**)error
+{
+	NSString *userTemp;
+	NSString *bundleName;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	// First we need to find the users temp dir.
+	userTemp = NSTemporaryDirectory();
+	
+	if (!userTemp) {
+		// Apple says this could fail...
+		*error = [NSError errorWithDomain:UpgradeErrorDomain
+									 code:errGetTempDir 
+								 userInfo:Nil];
+		return NO;
+	}
+	
+	bundleName = [[[NSBundle mainBundle] infoDictionary] 
+				  objectForKey:@"CFBundleIdentifier"];
+	
+	// The temp dir we got is for every app that runs under that user
+	// create an unique one for us (retain it for later use :))
+	tempDir = [[userTemp stringByAppendingPathComponent:bundleName] retain];
+	
+	// If the folder already exists (because of a failed upgrade mainly)
+	// remove it
+	if ([fileManager fileExistsAtPath:tempDir]) {
+		NSLog(@"WARNING! An old temp dir exists. An failed upgrade?!");
+		
+		if (![fileManager removeFileAtPath:tempDir handler:Nil]) {
+			NSLog(@"Could not remove the old temp dir!");
+			*error = [NSError errorWithDomain:UpgradeErrorDomain 
+										code:errCreateTempDir 
+									userInfo:Nil];
+			return NO;
+		}
+	}
+	
+	
+	// Finally create our temp dir
+	if (![fileManager createDirectoryAtPath:tempDir attributes:Nil]) {
+		*error = [NSError errorWithDomain:UpgradeErrorDomain 
+									 code:errCreateTempDir 
+								 userInfo:Nil];
+		return NO;
+	}
+	
+	return YES;
+}
+
+- (BOOL) tearDownTempDirWithError:(NSError**)error
+{
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	
+	// Simply kill the temp dir here...
+	if (![fileManager removeFileAtPath:tempDir handler:Nil]) {
+		*error = [NSError errorWithDomain:UpgradeErrorDomain
+									 code:errRemoveTempDir
+								 userInfo:Nil];
+		return NO;
+	}
+	
+	return YES;
+}
+
+- (BOOL) unpackContentWithError:(NSError**)error
+{
+	NSTask *tarTask;
+	NSString *upgradeBundlePath;
+	
+	upgradeBundlePath = [[NSBundle mainBundle] pathForResource:@"xampp"
+														ofType:@"upgrade"];
+		
+	if (!upgradeBundlePath) {
+		*error = [NSError errorWithDomain:UpgradeErrorDomain 
+									 code:errUpgradeBundleMissing 
+								 userInfo:Nil];
+		return NO;
+	}
+	
+	tarTask = [[NSTask alloc] init];
+	
+	[tarTask setLaunchPath:@"/usr/bin/tar"];
+	[tarTask setArguments:[NSArray arrayWithObjects:@"xfz", upgradeBundlePath, @"-C", tempDir, Nil]];
+	
+	[tarTask launch];
+	[tarTask waitUntilExit];
+
+	if ([tarTask terminationStatus] != 0) {
+		*error = [NSError errorWithDomain:UpgradeErrorDomain
+									 code:errUnpackBundleFailed
+								 userInfo:Nil];
+		
+		[tarTask release];
+		return NO;
+	}
+	
+	[tarTask release];
+	return YES;
+}
+
+- (BOOL) readContent
+{
+	NSXMLParser *parser;
+	NSURL *contentXML;
+	
+	contentXML = [NSURL fileURLWithPath:[tempDir stringByAppendingPathComponent:@"content.xml"]];
+	
+	NSLog(@"url %@", contentXML);
+	
+	// Setup some temporarlly vars
+	elementStack = [[NSMutableArray alloc] init];
+	
+	parser = [[NSXMLParser alloc] initWithContentsOfURL:contentXML];
+	
+	[parser setDelegate:self];
+	[parser parse];
+	
+	[elementStack release];
+	elementStack = Nil;
+	
+	NSLog(@"appPath %@ versionFile %@ version %@ %@\n actions %i", applicationPath, versionFile, version, upgradeableVersions, [actions count]);
+}
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName 
+	attributes:(NSDictionary *)attributeDict
+{
+	[elementStack addObject:elementName];
+	
+	if ([elementName isCaseInsensitiveLike:@"application-path"] ||
+		[elementName isCaseInsensitiveLike:@"version-file"] ||
+		[elementName isCaseInsensitiveLike:@"version"]) {
+		tempString = [[NSMutableString alloc] init];
+	} else if ([elementName isCaseInsensitiveLike:@"upgradeable-versions"] ||
+			   [elementName isCaseInsensitiveLike:@"actions"]) {
+		tempArray = [[NSMutableArray alloc] init];
+	} else if ([[Action knownActions] containsObject:elementName]) {
+		tempAction = [[Action actionForName:elementName andAttributes:attributeDict] retain];
+	} else {
+		NSLog(@"Unhandeld %@", elementName);
+	}
+
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+{
+	if (tempString) {
+		[tempString appendString:string];
+	}
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
+  namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+	NSAssert([[elementStack lastObject] isEqualTo:elementName], @"");
+	[elementStack removeLastObject];
+	
+	if ([elementName isCaseInsensitiveLike:@"application-path"]) {
+		[self setApplicationPath:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+		[tempString release];
+		tempString = Nil;
+	} else if ([elementName isCaseInsensitiveLike:@"version-file"]) {
+		[self setVersionFile:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+		[tempString release];
+		tempString = Nil;
+	} else if ([elementName isCaseInsensitiveLike:@"version"] && [[elementStack lastObject] isCaseInsensitiveLike:@"upgrade"]) {
+		[self setVersion:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+		[tempString release];
+		tempString = Nil;
+	} else if ([elementName isCaseInsensitiveLike:@"version"] && [[elementStack lastObject] isCaseInsensitiveLike:@"upgradeable-versions"]) {
+		[tempArray addObject:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+		[tempString release];
+		tempString = Nil;
+	} else if ([elementName isCaseInsensitiveLike:@"upgradeable-versions"]) {
+		[self setUpgradeableVersions:[NSSet setWithArray:tempArray]];
+		[tempArray release];
+		tempArray = Nil;
+	} else if ([elementName isCaseInsensitiveLike:@"actions"]) {
+		[self setActions:tempArray];
+		[tempArray release];
+		tempArray = Nil;
+	} else if ([[Action knownActions] containsObject:elementName]) {
+		[tempArray addObject:tempAction];
+		[tempAction release];
+		tempAction = Nil;
+	}
+}
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+	NSLog(@"error %@", parseError);
 }
 
 @end

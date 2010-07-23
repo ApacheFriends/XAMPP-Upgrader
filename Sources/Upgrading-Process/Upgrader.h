@@ -1,30 +1,67 @@
-//
-//  Upgrader.h
-//  XAMPP Upgrader
-//
-//  Created by Christian Speich on 02.10.09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+/*
+ 
+ XAMPP
+ Copyright (C) 2010 by Apache Friends
+ 
+ Authors of this file:
+ - Christian Speich <kleinweby@apachefriends.org>
+ 
+ This file is part of XAMPP.
+ 
+ XAMPP is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ XAMPP is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with XAMPP.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ */
 
 #import <Cocoa/Cocoa.h>
+#import "UpgraderDelegateProtocol.h"
 
 @class UpgradingController;
+@class Action;
 
 @interface Upgrader : NSObject {
+	id<UpgraderDelegateProtocol> delegate;
 	NSProgressIndicator*	progressIndicator;
 	NSTextField*			progressTextField;
 	NSTextField*			progressSubtextField;
+	
+	NSString*				tempDir;
+	
+	NSString*				applicationPath;
+	NSString*				versionFile;
+	NSString*				version;
+	NSSet*					upgradeableVersions;
+	NSArray*				actions;
+	
+	// XML Parsing
+	NSMutableArray*			elementStack;
+	NSMutableString*		tempString;
+	NSMutableArray*			tempArray;
+	Action*					tempAction;
+	
 }
 
-- (void) setProgressIndicator:(NSProgressIndicator*)progressIndicator;
-- (NSProgressIndicator*) progressIndicator;
-- (void) setProgressTextField:(NSTextField*)progressTextField;
-- (NSTextField*) progressTextField;
-- (void) setProgressSubtextField:(NSTextField*)progressSubtextField;
-- (NSTextField*) progressSubtextField;
+- (void) setDelegate:(id<UpgraderDelegateProtocol>)delegate;
+- (id<UpgraderDelegateProtocol>) delegate;
 
 - (NSError*) upgrade;
 
 - (oneway void) quit;
+
+- (NSString*) applicationPath;
+- (NSString*) versionFile;
+- (NSString*) version;
+- (NSSet*) upgradeableVersions;
+- (NSArray*) actions;
 
 @end
