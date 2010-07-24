@@ -43,6 +43,8 @@
 	NSSet*					upgradeableVersions;
 	NSArray*				actions;
 	
+    NSError*                upgradeError;
+    
 	// XML Parsing
 	NSMutableArray*			elementStack;
 	NSMutableString*		tempString;
@@ -54,7 +56,8 @@
 - (void) setDelegate:(id<UpgraderDelegateProtocol>)delegate;
 - (id<UpgraderDelegateProtocol>) delegate;
 
-- (NSError*) upgrade;
+- (BOOL) upgrade;
+- (NSError*) upgradeError;
 
 - (oneway void) quit;
 

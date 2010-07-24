@@ -32,10 +32,10 @@
 
 @interface Upgrader(Steps)
 
-- (BOOL) setupTempDirWithError:(NSError**)error;
-- (BOOL) tearDownTempDirWithError:(NSError**)error;
+- (BOOL) setupTempDir;
+- (BOOL) tearDownTempDir;
 
-- (BOOL) unpackContentWithError:(NSError**)error;
+- (BOOL) unpackContent;
 - (BOOL) readContent;
 
 @end
@@ -47,6 +47,7 @@
 - (void) setVersion:(NSString*)version;
 - (void) setUpgradeableVersions:(NSSet*)versions;
 - (void) setActions:(NSArray*)actions;
+- (void) setUpgradeError:(NSError*)error;
 
 @end
 
@@ -63,30 +64,28 @@
 	return delegate;
 }
 
-- (NSError*) upgrade
-{
-	NSError* error = Nil;
-	
+- (BOOL) upgrade
+{	
 	[[self delegate] setActionName:@"Prepare Upgrade…"];
 	[[self delegate] setActionDescription:@"Reading upgrade content…"];
 
 	/* First we need an temporary directory to unpack our upgrade in */
-	if (![self setupTempDirWithError:&error]) {
-	    return error;	
+	if (![self setupTempDir]) {
+	    return NO;	
 	}
 	
 	/* Unpack the upgrade content to our temp dir */
-	if (![self unpackContentWithError:&error]) {
-		return error;
+	if (![self unpackContent]) {
+		return NO;
 	}
 	
 	if (![self readContent]) {
-		return error;
+		return NO;
 	}
 	
 	/* We're done with everything, remove the temp dir */
-	if (![self tearDownTempDirWithError:&error]) {
-		return error;
+	if (![self tearDownTempDir]) {
+		return NO;
 	}
 	
 	NSLog(@"Temporary dir: %@", tempDir);
@@ -98,7 +97,7 @@
 		[[self delegate] setProgress:i*10.f];
 	}
 	
-	return error;
+	return YES;
 }
 
 - (void) dealloc
@@ -110,6 +109,7 @@
 	[self setVersion:Nil];
 	[self setUpgradeableVersions:Nil];
 	[self setActions:Nil];
+    [self setUpgradeError:Nil];
 	
 	[super dealloc];
 }
@@ -146,6 +146,10 @@
 	return actions;
 }
 
+- (NSError *)upgradeError {
+    return upgradeError;
+}
+
 - (void) setApplicationPath:(NSString*)path
 {
 	[applicationPath release];
@@ -176,11 +180,17 @@
 	actions = [_actions copy];
 }
 
+- (void)setUpgradeError:(NSError *)error
+{
+    [upgradeError release];
+    upgradeError = [error retain];
+}
+
 @end
 
 @implementation Upgrader(Steps)
 
-- (BOOL) setupTempDirWithError:(NSError**)error
+- (BOOL) setupTempDir
 {
 	NSString *userTemp;
 	NSString *bundleName;
@@ -191,9 +201,9 @@
 	
 	if (!userTemp) {
 		// Apple says this could fail...
-		*error = [NSError errorWithDomain:UpgradeErrorDomain
-									 code:errGetTempDir 
-								 userInfo:Nil];
+		[self setUpgradeError:[NSError errorWithDomain:UpgradeErrorDomain
+                                                  code:errGetTempDir 
+                                              userInfo:Nil]];
 		return NO;
 	}
 	
@@ -211,9 +221,9 @@
 		
 		if (![fileManager removeFileAtPath:tempDir handler:Nil]) {
 			NSLog(@"Could not remove the old temp dir!");
-			*error = [NSError errorWithDomain:UpgradeErrorDomain 
-										code:errCreateTempDir 
-									userInfo:Nil];
+			[self setUpgradeError:[NSError errorWithDomain:UpgradeErrorDomain 
+                                                      code:errCreateTempDir 
+                                                  userInfo:Nil]];
 			return NO;
 		}
 	}
@@ -221,31 +231,31 @@
 	
 	// Finally create our temp dir
 	if (![fileManager createDirectoryAtPath:tempDir attributes:Nil]) {
-		*error = [NSError errorWithDomain:UpgradeErrorDomain 
-									 code:errCreateTempDir 
-								 userInfo:Nil];
+		[self setUpgradeError:[NSError errorWithDomain:UpgradeErrorDomain 
+                                                  code:errCreateTempDir 
+                                              userInfo:Nil]];
 		return NO;
 	}
 	
 	return YES;
 }
 
-- (BOOL) tearDownTempDirWithError:(NSError**)error
+- (BOOL) tearDownTempDir
 {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
 	// Simply kill the temp dir here...
 	if (![fileManager removeFileAtPath:tempDir handler:Nil]) {
-		*error = [NSError errorWithDomain:UpgradeErrorDomain
-									 code:errRemoveTempDir
-								 userInfo:Nil];
+		[self setUpgradeError:[NSError errorWithDomain:UpgradeErrorDomain
+                                                  code:errRemoveTempDir
+                                              userInfo:Nil]];
 		return NO;
 	}
 	
 	return YES;
 }
 
-- (BOOL) unpackContentWithError:(NSError**)error
+- (BOOL) unpackContent
 {
 	NSTask *tarTask;
 	NSString *upgradeBundlePath;
@@ -254,9 +264,9 @@
 														ofType:@"upgrade"];
 		
 	if (!upgradeBundlePath) {
-		*error = [NSError errorWithDomain:UpgradeErrorDomain 
-									 code:errUpgradeBundleMissing 
-								 userInfo:Nil];
+		[self setUpgradeError:[NSError errorWithDomain:UpgradeErrorDomain 
+                                                  code:errUpgradeBundleMissing 
+                                              userInfo:Nil]];
 		return NO;
 	}
 	
@@ -270,9 +280,9 @@
 	[tarTask waitUntilExit];
 
 	if ([tarTask terminationStatus] != 0) {
-		*error = [NSError errorWithDomain:UpgradeErrorDomain
-									 code:errUnpackBundleFailed
-								 userInfo:Nil];
+		[self setUpgradeError:[NSError errorWithDomain:UpgradeErrorDomain
+                                                  code:errUnpackBundleFailed
+                                              userInfo:Nil]];
 		
 		[tarTask release];
 		return NO;

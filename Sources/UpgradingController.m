@@ -205,9 +205,8 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 		[upgrader setDelegate:self];
 		
 		// Run the real upgrade
-		error = [upgrader upgrade];
-		if (error)
-			[self handleError:error];
+		if (![upgrader upgrade])
+			[self handleError:[upgrader upgradeError]];
 		
 	}
 	@catch (NSException * e) {
