@@ -263,7 +263,8 @@
 	tarTask = [[NSTask alloc] init];
 	
 	[tarTask setLaunchPath:@"/usr/bin/tar"];
-	[tarTask setArguments:[NSArray arrayWithObjects:@"xfz", upgradeBundlePath, @"-C", tempDir, Nil]];
+	[tarTask setArguments:[NSArray arrayWithObjects:@"xfz", upgradeBundlePath, 
+                           @"-C", tempDir, Nil]];
 	
 	[tarTask launch];
 	[tarTask waitUntilExit];
@@ -310,12 +311,12 @@
 {
 	[elementStack addObject:elementName];
 	
-	if ([elementName isCaseInsensitiveLike:@"application-path"] ||
-		[elementName isCaseInsensitiveLike:@"version-file"] ||
-		[elementName isCaseInsensitiveLike:@"version"]) {
+	if ([elementName isEqualToString:@"application-path"] ||
+		[elementName isEqualToString:@"version-file"] ||
+		[elementName isEqualToString:@"version"]) {
 		tempString = [[NSMutableString alloc] init];
-	} else if ([elementName isCaseInsensitiveLike:@"upgradeable-versions"] ||
-			   [elementName isCaseInsensitiveLike:@"actions"]) {
+	} else if ([elementName isEqualToString:@"upgradeable-versions"] ||
+			   [elementName isEqualToString:@"actions"]) {
 		tempArray = [[NSMutableArray alloc] init];
 	} else if ([[Action knownActions] containsObject:elementName]) {
 		tempAction = [[Action actionForName:elementName andAttributes:attributeDict] retain];
@@ -335,30 +336,31 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-	NSAssert([[elementStack lastObject] isEqualTo:elementName], @"");
+	NSAssert([[elementStack lastObject] isEqualTo:elementName], 
+             @"Wrong XML Element ended. NSXMLParser bug?!?");
 	[elementStack removeLastObject];
 	
-	if ([elementName isCaseInsensitiveLike:@"application-path"]) {
+	if ([elementName isEqualToString:@"application-path"]) {
 		[self setApplicationPath:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 		[tempString release];
 		tempString = Nil;
-	} else if ([elementName isCaseInsensitiveLike:@"version-file"]) {
+	} else if ([elementName isEqualToString:@"version-file"]) {
 		[self setVersionFile:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 		[tempString release];
 		tempString = Nil;
-	} else if ([elementName isCaseInsensitiveLike:@"version"] && [[elementStack lastObject] isCaseInsensitiveLike:@"upgrade"]) {
+	} else if ([elementName isEqualToString:@"version"] && [[elementStack lastObject] isCaseInsensitiveLike:@"upgrade"]) {
 		[self setVersion:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 		[tempString release];
 		tempString = Nil;
-	} else if ([elementName isCaseInsensitiveLike:@"version"] && [[elementStack lastObject] isCaseInsensitiveLike:@"upgradeable-versions"]) {
+	} else if ([elementName isEqualToString:@"version"] && [[elementStack lastObject] isCaseInsensitiveLike:@"upgradeable-versions"]) {
 		[tempArray addObject:[tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 		[tempString release];
 		tempString = Nil;
-	} else if ([elementName isCaseInsensitiveLike:@"upgradeable-versions"]) {
+	} else if ([elementName isEqualToString:@"upgradeable-versions"]) {
 		[self setUpgradeableVersions:[NSSet setWithArray:tempArray]];
 		[tempArray release];
 		tempArray = Nil;
-	} else if ([elementName isCaseInsensitiveLike:@"actions"]) {
+	} else if ([elementName isEqualToString:@"actions"]) {
 		[self setActions:tempArray];
 		[tempArray release];
 		tempArray = Nil;
