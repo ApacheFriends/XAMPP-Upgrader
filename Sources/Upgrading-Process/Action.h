@@ -35,9 +35,10 @@
 
 + (id) actionForName:(NSString*)name andAttributes:(NSDictionary*)attributes;
 
+// Never use this directly.
+// Use actionForName:andAttributes: to create an Action instance
 - (id) initWithAttributes:(NSDictionary*)attributes;
 
-- (BOOL) canApply;
 - (BOOL) applyWithError:(NSError**)errorOrNil;
 
 @end

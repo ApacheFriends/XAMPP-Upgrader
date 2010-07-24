@@ -68,7 +68,8 @@
 
 - (Upgrader*) newUpgraderWithAuthorizationExternalForm:(AuthorizationExternalForm)form
 {
-    if (![self checkAuthorizationRight:kAuthorizationRightExecute inExternalForm:form])
+    if (![self checkAuthorizationRight:kAuthorizationRightExecute 
+                        inExternalForm:form])
 		return Nil;
 	
 	[idleQuit invalidate];

@@ -25,7 +25,7 @@
 
 #import "PatchAction.h"
 
-@interface PatchAction()
+@interface PatchAction(Setters)
 
 - (void) setPatchFile:(NSString*)_file;
 - (void) setPath:(NSString*)_path;
@@ -35,38 +35,6 @@
 
 
 @implementation PatchAction
-
-- (NSString*) patchFile
-{
-	return patchFile;
-}
-
-- (void) setPatchFile:(NSString*)_file
-{
-	[patchFile release];
-	patchFile = [_file copy];
-}
-
-- (NSString*) path
-{
-	return path;
-}
-
-- (void) setPath:(NSString*)_path
-{
-	[path release];
-	path = [_path copy];
-}
-
-- (PatchType) type
-{
-	return type;
-}
-
-- (void) setType:(PatchType)_type
-{
-	type = _type;
-}
 
 - (id) initWithAttributes:(NSDictionary*)attrs
 {
@@ -94,6 +62,45 @@
 
 - (NSString*) description {
 	return [NSString stringWithFormat:@"<%@(%p) file=%@ path=%@>", [self className], self, [self patchFile], [self path]];
+}
+
+#pragma mark Getters
+
+- (NSString*) patchFile
+{
+	return patchFile;
+}
+
+- (NSString*) path
+{
+	return path;
+}
+
+- (PatchType) type
+{
+	return type;
+}
+
+@end
+
+@implementation PatchAction(Setters)
+
+
+- (void) setPatchFile:(NSString*)_file
+{
+	[patchFile release];
+	patchFile = [_file copy];
+}
+
+- (void) setPath:(NSString*)_path
+{
+	[path release];
+	path = [_path copy];
+}
+
+- (void) setType:(PatchType)_type
+{
+	type = _type;
 }
 
 @end

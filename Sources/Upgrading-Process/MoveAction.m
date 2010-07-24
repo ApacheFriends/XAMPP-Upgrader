@@ -25,7 +25,7 @@
 
 #import "MoveAction.h"
 
-@interface MoveAction()
+@interface MoveAction(Setters)
 
 - (void) setSourcePath:(NSString*)path;
 - (void) setTargetPath:(NSString*)path;
@@ -33,28 +33,6 @@
 @end
 
 @implementation MoveAction
-
-- (NSString*) sourcePath
-{
-    return sourcePath;
-}
-
-- (void) setSourcePath:(NSString *)path
-{
-    [sourcePath release];
-    sourcePath = [path copy];
-}
-
-- (NSString *)targetPath
-{
-    return targetPath;
-}
-
-- (void)setTargetPath:(NSString *)path
-{
-    [targetPath release];
-    targetPath = [path copy];
-}
 
 - (id) initWithAttributes:(NSDictionary*)attrs
 {
@@ -71,6 +49,34 @@
     [self setTargetPath:Nil];
     
     [super dealloc];
+}
+
+#pragma mark Getters
+
+- (NSString*) sourcePath
+{
+    return sourcePath;
+}
+
+- (NSString *)targetPath
+{
+    return targetPath;
+}
+
+@end
+
+@implementation MoveAction(Setters)
+
+- (void) setSourcePath:(NSString *)path
+{
+    [sourcePath release];
+    sourcePath = [path copy];
+}
+
+- (void)setTargetPath:(NSString *)path
+{
+    [targetPath release];
+    targetPath = [path copy];
 }
 
 @end

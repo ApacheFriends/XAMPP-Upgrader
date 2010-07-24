@@ -37,7 +37,10 @@
 // Private
 + (NSDictionary*) actionsClasses
 {
-	return [NSDictionary dictionaryWithObjectsAndKeys:NSStringFromClass([PatchAction class]),@"patch", NSStringFromClass([MoveAction class]), @"move",Nil];
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+            NSStringFromClass([PatchAction class]),@"patch", 
+            NSStringFromClass([MoveAction class]), @"move",
+            Nil];
 }
 
 + (id) actionForName:(NSString*)name andAttributes:(NSDictionary*)attributes
@@ -63,12 +66,6 @@
 {
 	
 	[super dealloc];
-}
-
-
-- (BOOL) canApply
-{
-	return YES;
 }
 
 - (BOOL) applyWithError:(NSError**)errorOrNil
