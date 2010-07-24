@@ -30,6 +30,7 @@
 	NSTimer* idleQuit;
 }
 
-- (BOOL) checkAuthorizationExternalForm:(AuthorizationExternalForm)form;
+- (BOOL) checkAuthorizationRight:(char*)right 
+                  inExternalForm:(AuthorizationExternalForm)form;
 
 @end

@@ -41,12 +41,13 @@
 	return self;
 }
 
-- (BOOL) checkAuthorizationExternalForm:(AuthorizationExternalForm)form
+- (BOOL) checkAuthorizationRight:(char*)right 
+                  inExternalForm:(AuthorizationExternalForm)form
 {
 	OSStatus status;
 	AuthorizationRef authRef;
 	AuthorizationFlags flags = kAuthorizationFlagDefaults;
-	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
+	AuthorizationItem items = {right, 0, NULL, 0};
 	AuthorizationRights rights = {1, &items};
 	
 	status = AuthorizationCreateFromExternalForm(&form, &authRef);
@@ -67,7 +68,7 @@
 
 - (Upgrader*) newUpgraderWithAuthorizationExternalForm:(AuthorizationExternalForm)form
 {
-	if (![self checkAuthorizationExternalForm:form])
+    if (![self checkAuthorizationRight:kAuthorizationRightExecute inExternalForm:form])
 		return Nil;
 	
 	[idleQuit invalidate];
