@@ -308,6 +308,7 @@
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
+				"de-DE",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* XAMPP Upgrader */;
 			projectDirPath = "";
