@@ -31,9 +31,6 @@
 
 @interface Upgrader : NSObject {
 	id<UpgraderDelegateProtocol> delegate;
-	NSProgressIndicator*	progressIndicator;
-	NSTextField*			progressTextField;
-	NSTextField*			progressSubtextField;
 	
 	NSString*				tempDir;
 	

@@ -29,6 +29,8 @@
 
 @synthesize patchFile;
 @synthesize path;
+@synthesize sourceSHA1;
+@synthesize targetSHA1;
 @synthesize type;
 
 - (id) initWithAttributes:(NSDictionary*)attrs
@@ -51,6 +53,8 @@
 - (void)dealloc {
     self.patchFile = Nil;
     self.path = Nil;
+    self.sourceSHA1 = Nil;
+    self.targetSHA1 = Nil;
     
     [super dealloc];
 }

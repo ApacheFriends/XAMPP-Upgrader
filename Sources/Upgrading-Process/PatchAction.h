@@ -35,10 +35,14 @@ typedef enum {
 	NSString*	patchFile;
 	NSString*	path;
 	PatchType   type;
+    NSString*   sourceSHA1;
+    NSString*   targetSHA1;
 }
 
 @property(copy) NSString* patchFile;
 @property(copy) NSString* path;
+@property(copy) NSString* sourceSHA1;
+@property(copy) NSString* targetSHA1;
 @property PatchType type;
 
 @end
