@@ -31,7 +31,7 @@
     NSString* targetPath;
 }
 
-- (NSString*) sourcePath;
-- (NSString*) targetPath;
+@property(copy) NSString* sourcePath;
+@property(copy) NSString* targetPath;
 
 @end

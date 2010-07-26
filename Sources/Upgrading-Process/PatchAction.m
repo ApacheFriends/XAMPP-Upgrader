@@ -25,27 +25,22 @@
 
 #import "PatchAction.h"
 
-@interface PatchAction(Setters)
-
-- (void) setPatchFile:(NSString*)_file;
-- (void) setPath:(NSString*)_path;
-- (void) setType:(PatchType)_type;
-
-@end
-
-
 @implementation PatchAction
+
+@synthesize patchFile;
+@synthesize path;
+@synthesize type;
 
 - (id) initWithAttributes:(NSDictionary*)attrs
 {
 	self = [super initWithAttributes:attrs];
 	if (self != nil) {
-		[self setPatchFile:[attrs objectForKey:@"patch-file"]];
-		[self setPath:[attrs objectForKey:@"path"]];
+		self.patchFile = [attrs objectForKey:@"patch-file"];
+		self.path = [attrs objectForKey:@"path"];
 		if ([[attrs objectForKey:@"type"] isCaseInsensitiveLike:@"text"]) {
-			[self setType:TextPatch];
+			self.type = TextPatch;
 		} else if ([[attrs objectForKey:@"type"] isCaseInsensitiveLike:@"binary"]) {
-			[self setType:BinaryPatch];
+			self.type = BinaryPatch;
 		} else {
 			// TODO: Errorhandling
 		}
@@ -54,53 +49,14 @@
 }
 
 - (void)dealloc {
-    [self setPatchFile:Nil];
-    [self setPath:Nil];
+    self.patchFile = Nil;
+    self.path = Nil;
     
     [super dealloc];
 }
 
 - (NSString*) description {
 	return [NSString stringWithFormat:@"<%@(%p) file=%@ path=%@>", [self className], self, [self patchFile], [self path]];
-}
-
-#pragma mark Getters
-
-- (NSString*) patchFile
-{
-	return patchFile;
-}
-
-- (NSString*) path
-{
-	return path;
-}
-
-- (PatchType) type
-{
-	return type;
-}
-
-@end
-
-@implementation PatchAction(Setters)
-
-
-- (void) setPatchFile:(NSString*)_file
-{
-	[patchFile release];
-	patchFile = [_file copy];
-}
-
-- (void) setPath:(NSString*)_path
-{
-	[path release];
-	path = [_path copy];
-}
-
-- (void) setType:(PatchType)_type
-{
-	type = _type;
 }
 
 @end

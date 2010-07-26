@@ -28,17 +28,36 @@
 
 @implementation AccessControl
 
+@synthesize idleTimer;
+
 - (id) init
 {
 	self = [super init];
 	if (self != nil) {
-		idleQuit = [[NSTimer scheduledTimerWithTimeInterval:10
-													 target:self 
-												   selector:@selector(idleQuit) 
-												   userInfo:Nil 
-													repeats:NO] retain];
+		[self startIdleTimer];
 	}
 	return self;
+}
+
+- (void)dealloc {
+    [self stopIdleTimer];
+    
+    [super dealloc];
+}
+
+- (void)startIdleTimer
+{
+    self.idleTimer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                      target:self
+                                                    selector:@selector(idleQuit)
+                                                    userInfo:Nil
+                                                     repeats:NO];
+}
+
+- (void)stopIdleTimer
+{
+    [self.idleTimer invalidate];
+    self.idleTimer = Nil;
 }
 
 - (BOOL) checkAuthorizationRight:(char*)right 
@@ -72,9 +91,7 @@
                         inExternalForm:form])
 		return Nil;
 	
-	[idleQuit invalidate];
-	[idleQuit release];
-	idleQuit = Nil;
+	[self stopIdleTimer];
 	
 	return [[Upgrader alloc] init];
 }

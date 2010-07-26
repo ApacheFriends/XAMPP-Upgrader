@@ -24,6 +24,9 @@
 		92A3952D11F89BA80003FFBE /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3952C11F89BA80003FFBE /* Action.m */; };
 		92A3954711F89FFF0003FFBE /* PatchAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3954611F89FFF0003FFBE /* PatchAction.m */; };
 		92A395A611F8B2A40003FFBE /* MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A395A511F8B2A40003FFBE /* MoveAction.m */; };
+		92B4C47A11FB0F3E00082766 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92B4C47911FB0F3E00082766 /* Errors.strings */; };
+		92B4C47D11FDC14600082766 /* ErrorPresenter.h in Executables */ = {isa = PBXBuildFile; fileRef = 92B4C47B11FDC14600082766 /* ErrorPresenter.h */; };
+		92B4C47E11FDC14600082766 /* ErrorPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B4C47C11FDC14600082766 /* ErrorPresenter.m */; };
 		92F67F031075151400C59470 /* NSTextView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F67F021075151400C59470 /* NSTextView+Additions.m */; };
 		92F67FA110764FE900C59470 /* xampp-upgrader in Executables */ = {isa = PBXBuildFile; fileRef = 92F67F9710764F6200C59470 /* xampp-upgrader */; };
 		92F67FA61076505900C59470 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F67FA51076505900C59470 /* main.m */; };
@@ -50,6 +53,7 @@
 			dstSubfolderSpec = 6;
 			files = (
 				92F67FA110764FE900C59470 /* xampp-upgrader in Executables */,
+				92B4C47D11FDC14600082766 /* ErrorPresenter.h in Executables */,
 			);
 			name = Executables;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +94,9 @@
 		92A3954611F89FFF0003FFBE /* PatchAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchAction.m; sourceTree = "<group>"; };
 		92A395A411F8B2A40003FFBE /* MoveAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAction.h; sourceTree = "<group>"; };
 		92A395A511F8B2A40003FFBE /* MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveAction.m; sourceTree = "<group>"; };
+		92B4C47911FB0F3E00082766 /* Errors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
+		92B4C47B11FDC14600082766 /* ErrorPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorPresenter.h; sourceTree = "<group>"; };
+		92B4C47C11FDC14600082766 /* ErrorPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorPresenter.m; sourceTree = "<group>"; };
 		92CEBA58118C4C9B00C1070D /* UpgraderDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgraderDelegateProtocol.h; sourceTree = "<group>"; };
 		92F67F011075151400C59470 /* NSTextView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+Additions.h"; sourceTree = "<group>"; };
 		92F67F021075151400C59470 /* NSTextView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+Additions.m"; sourceTree = "<group>"; };
@@ -128,6 +135,8 @@
 				92F67F8810764C1300C59470 /* Upgrading-Process */,
 				92F67F7810763D8E00C59470 /* Views */,
 				92F67F7710763D7C00C59470 /* Additions */,
+				92B4C47B11FDC14600082766 /* ErrorPresenter.h */,
+				92B4C47C11FDC14600082766 /* ErrorPresenter.m */,
 				256AC3D80F4B6AC300CF3369 /* XAMPP_UpgraderAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* XAMPP_UpgraderAppDelegate.m */,
 				92791E631073B71900865362 /* UpgradingController.h */,
@@ -189,6 +198,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92B4C47911FB0F3E00082766 /* Errors.strings */,
 				92A378201073DBEB0062C96D /* Welcome.rtfd */,
 				8D1107310486CEB800E47090 /* XAMPP_Upgrader-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -330,6 +340,7 @@
 				92A378231073DBF30062C96D /* UpgradeWindow.xib in Resources */,
 				92A378211073DBEB0062C96D /* Welcome.rtfd in Resources */,
 				921FC5261078993300516F83 /* Upgrade.strings in Resources */,
+				92B4C47A11FB0F3E00082766 /* Errors.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +358,7 @@
 				92F67F031075151400C59470 /* NSTextView+Additions.m in Sources */,
 				921FC51C1078982C00516F83 /* NSObject+Additions.m in Sources */,
 				921FC5201078985B00516F83 /* XPMainThreadProxy.m in Sources */,
+				92B4C47E11FDC14600082766 /* ErrorPresenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

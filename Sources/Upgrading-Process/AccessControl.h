@@ -27,8 +27,13 @@
 #import "AccessControlProtocol.h"
 
 @interface AccessControl : NSObject<AccessControlProtocol> {
-	NSTimer* idleQuit;
+	NSTimer* idleTimer;
 }
+
+@property(retain) NSTimer* idleTimer;
+
+- (void) startIdleTimer;
+- (void) stopIdleTimer;
 
 - (BOOL) checkAuthorizationRight:(char*)right 
                   inExternalForm:(AuthorizationExternalForm)form;

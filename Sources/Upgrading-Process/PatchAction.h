@@ -37,8 +37,8 @@ typedef enum {
 	PatchType   type;
 }
 
-- (NSString*) patchFile;
-- (NSString*) path;
-- (PatchType) type;
+@property(copy) NSString* patchFile;
+@property(copy) NSString* path;
+@property PatchType type;
 
 @end
