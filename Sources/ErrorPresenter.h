@@ -25,10 +25,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class UpgradingController;
 
-@interface XAMPP_UpgraderAppDelegate : NSObject {
-	UpgradingController* controller;
+@interface ErrorPresenter : NSObject {
+@private
+    NSMutableDictionary* tableNames;
+    NSString* genericErrorTableName;
 }
+
+@property(retain) NSMutableDictionary* tableNames;
+@property(copy) NSString* genericErrorTableName;
+
+- (void) setTableName:(NSString*)name forDomain:(NSString*)errorDomain;
+
+- (BOOL) presentError:(NSError*)error;
 
 @end

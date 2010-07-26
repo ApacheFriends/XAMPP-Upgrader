@@ -33,6 +33,7 @@
 #import "AccessControlProtocol.h"
 
 #import "UpgradeErrors.h"
+#import "ErrorPresenter.h"
 
 NSString* XUWelcomeScreen = @"XUWelcomeScreen";
 NSString* XUProgressScreen = @"XUProgressScreen";
@@ -187,7 +188,7 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSError* error = Nil;
 	Upgrader* upgrader;
-	
+    
 	/* Starting our helper process that runs as root */
 	[[self progressSubtext] setStringValue:NSLocalizedStringFromTable(@"Authorize",
 																	  @"Upgrade",
@@ -320,8 +321,14 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 		&& [error code] == NSUserCancelledError) {
 		[self showView:XUWelcomeScreen];
 	}
-	// Just a fix implementation
-	[NSApp presentError:error];
+	ErrorPresenter* presenter = [[ErrorPresenter alloc] init];
+    
+    [presenter setTableName:@"Errors" forDomain:UpgradeErrorDomain];
+    
+    [presenter presentError:error];
+    
+    [presenter release];
+    
 	NSLog(@"Error: %@", error);
 }
 

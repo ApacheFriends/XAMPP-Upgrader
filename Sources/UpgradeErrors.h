@@ -29,7 +29,8 @@ enum {
 	/* Upgrade corrupt errors */
 	errUpgradeHelperMissing = 5001,
 	errUpgradeBundleMissing = 5002,
-	
+	errUnpackBundleFailed = 5003,
+    
 	/* Get upgrade errors */
 	errConnectUpgradeHelper = 6001,
 	errAccessControlGet = 6002,
@@ -39,5 +40,4 @@ enum {
 	errGetTempDir = 7001,
 	errCreateTempDir = 7002,
 	errRemoveTempDir = 7003,
-	errUnpackBundleFailed = 7011,
 };

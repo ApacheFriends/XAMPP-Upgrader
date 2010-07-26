@@ -12,6 +12,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		92039D9411FDD72F00F803F9 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92039D9611FDD72F00F803F9 /* Errors.strings */; };
 		921FC51C1078982C00516F83 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FC51B1078982C00516F83 /* NSObject+Additions.m */; };
 		921FC5201078985B00516F83 /* XPMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FC51F1078985B00516F83 /* XPMainThreadProxy.m */; };
 		921FC5261078993300516F83 /* Upgrade.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921FC5251078993300516F83 /* Upgrade.strings */; };
@@ -24,7 +25,6 @@
 		92A3952D11F89BA80003FFBE /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3952C11F89BA80003FFBE /* Action.m */; };
 		92A3954711F89FFF0003FFBE /* PatchAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3954611F89FFF0003FFBE /* PatchAction.m */; };
 		92A395A611F8B2A40003FFBE /* MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A395A511F8B2A40003FFBE /* MoveAction.m */; };
-		92B4C47A11FB0F3E00082766 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92B4C47911FB0F3E00082766 /* Errors.strings */; };
 		92B4C47D11FDC14600082766 /* ErrorPresenter.h in Executables */ = {isa = PBXBuildFile; fileRef = 92B4C47B11FDC14600082766 /* ErrorPresenter.h */; };
 		92B4C47E11FDC14600082766 /* ErrorPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B4C47C11FDC14600082766 /* ErrorPresenter.m */; };
 		92F67F031075151400C59470 /* NSTextView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F67F021075151400C59470 /* NSTextView+Additions.m */; };
@@ -73,6 +73,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* XAMPP_Upgrader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XAMPP_Upgrader-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* XAMPP Upgrader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XAMPP Upgrader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92039D9511FDD72F00F803F9 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
 		92097743118C83AE004045FD /* UpgradeErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeErrors.h; sourceTree = "<group>"; };
 		921FC51A1078982C00516F83 /* NSObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Additions.h"; sourceTree = "<group>"; };
 		921FC51B1078982C00516F83 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		92A3954611F89FFF0003FFBE /* PatchAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatchAction.m; sourceTree = "<group>"; };
 		92A395A411F8B2A40003FFBE /* MoveAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveAction.h; sourceTree = "<group>"; };
 		92A395A511F8B2A40003FFBE /* MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveAction.m; sourceTree = "<group>"; };
-		92B4C47911FB0F3E00082766 /* Errors.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
 		92B4C47B11FDC14600082766 /* ErrorPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorPresenter.h; sourceTree = "<group>"; };
 		92B4C47C11FDC14600082766 /* ErrorPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorPresenter.m; sourceTree = "<group>"; };
 		92CEBA58118C4C9B00C1070D /* UpgraderDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgraderDelegateProtocol.h; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				92B4C47911FB0F3E00082766 /* Errors.strings */,
+				92039D9611FDD72F00F803F9 /* Errors.strings */,
 				92A378201073DBEB0062C96D /* Welcome.rtfd */,
 				8D1107310486CEB800E47090 /* XAMPP_Upgrader-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -340,7 +340,7 @@
 				92A378231073DBF30062C96D /* UpgradeWindow.xib in Resources */,
 				92A378211073DBEB0062C96D /* Welcome.rtfd in Resources */,
 				921FC5261078993300516F83 /* Upgrade.strings in Resources */,
-				92B4C47A11FB0F3E00082766 /* Errors.strings in Resources */,
+				92039D9411FDD72F00F803F9 /* Errors.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +400,14 @@
 				1DDD58150DA1D0A300B32029 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		92039D9611FDD72F00F803F9 /* Errors.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92039D9511FDD72F00F803F9 /* English */,
+			);
+			name = Errors.strings;
 			sourceTree = "<group>";
 		};
 		921FC5251078993300516F83 /* Upgrade.strings */ = {

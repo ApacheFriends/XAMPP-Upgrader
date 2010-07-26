@@ -23,12 +23,17 @@
  
  */
 
-#import <Cocoa/Cocoa.h>
+/*
+  This file contains human readable (and localized) descriptions for
+  the errors that can happend in this project...
+*/
 
-@class UpgradingController;
+/* Generic error strings */
+"GenericError" = "A fatal error happend!";
+"GenericErrorInfo" = "Please contact Apache Friends to help us resolve this issue.";
 
-@interface XAMPP_UpgraderAppDelegate : NSObject {
-	UpgradingController* controller;
-}
+/* This will be append to every ErrorInfo */
+"ErrorCode" = "(Error %i)";
 
-@end
+"Error5" = "The Upgrade could not be completed because its Content is damaged!";
+"Error5003Info" = "The upgrade content could not be unpacked to an temporary location. This probbably means something went wrong during the creation of this upgrade package.";
