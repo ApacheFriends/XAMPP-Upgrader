@@ -18,6 +18,10 @@
 		921FC5261078993300516F83 /* Upgrade.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921FC5251078993300516F83 /* Upgrade.strings */; };
 		921FC54D10789CF700516F83 /* AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FC54C10789CF700516F83 /* AccessControl.m */; };
 		921FC7051078B77300516F83 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		926A187211FE357600EA9D0E /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3952C11F89BA80003FFBE /* Action.m */; };
+		926A187311FE357600EA9D0E /* PatchAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3954611F89FFF0003FFBE /* PatchAction.m */; };
+		926A187411FE357600EA9D0E /* MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A395A511F8B2A40003FFBE /* MoveAction.m */; };
+		926A188611FE3A3400EA9D0E /* Upgrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 926A188511FE3A3400EA9D0E /* Upgrader.m */; };
 		92791E651073B71900865362 /* UpgradingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92791E641073B71900865362 /* UpgradingController.m */; };
 		92791EE41073C06700865362 /* XUFlippedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92791EE31073C06700865362 /* XUFlippedView.m */; };
 		92A378211073DBEB0062C96D /* Welcome.rtfd in Resources */ = {isa = PBXBuildFile; fileRef = 92A378201073DBEB0062C96D /* Welcome.rtfd */; };
@@ -25,40 +29,15 @@
 		92A3952D11F89BA80003FFBE /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3952C11F89BA80003FFBE /* Action.m */; };
 		92A3954711F89FFF0003FFBE /* PatchAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A3954611F89FFF0003FFBE /* PatchAction.m */; };
 		92A395A611F8B2A40003FFBE /* MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A395A511F8B2A40003FFBE /* MoveAction.m */; };
-		92B4C47D11FDC14600082766 /* ErrorPresenter.h in Executables */ = {isa = PBXBuildFile; fileRef = 92B4C47B11FDC14600082766 /* ErrorPresenter.h */; };
 		92B4C47E11FDC14600082766 /* ErrorPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B4C47C11FDC14600082766 /* ErrorPresenter.m */; };
+		92E1D51511FE195500C10E3D /* UpgradeContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E1D51411FE195500C10E3D /* UpgradeContent.m */; };
+		92E1D52E11FE2A1300C10E3D /* UpgradeContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E1D51411FE195500C10E3D /* UpgradeContent.m */; };
 		92F67F031075151400C59470 /* NSTextView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F67F021075151400C59470 /* NSTextView+Additions.m */; };
-		92F67FA110764FE900C59470 /* xampp-upgrader in Executables */ = {isa = PBXBuildFile; fileRef = 92F67F9710764F6200C59470 /* xampp-upgrader */; };
 		92F67FA61076505900C59470 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F67FA51076505900C59470 /* main.m */; };
 		92F67FD61076532500C59470 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F67FD51076532500C59470 /* Security.framework */; };
 		92F680191076532A00C59470 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F67FD51076532500C59470 /* Security.framework */; };
 		92F6804A1076583400C59470 /* Upgrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F680491076583400C59470 /* Upgrader.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		92F67FA210764FEE00C59470 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 92F67F9610764F6200C59470;
-			remoteInfo = "xampp-upgrader";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		92F67FA010764FE200C59470 /* Executables */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-				92F67FA110764FE900C59470 /* xampp-upgrader in Executables */,
-				92B4C47D11FDC14600082766 /* ErrorPresenter.h in Executables */,
-			);
-			name = Executables;
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -83,6 +62,8 @@
 		921FC54B10789CF700516F83 /* AccessControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessControl.h; sourceTree = "<group>"; };
 		921FC54C10789CF700516F83 /* AccessControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessControl.m; sourceTree = "<group>"; };
 		921FC54E10789D0500516F83 /* AccessControlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessControlProtocol.h; sourceTree = "<group>"; };
+		926A188411FE3A3400EA9D0E /* Upgrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Upgrader.h; sourceTree = "<group>"; };
+		926A188511FE3A3400EA9D0E /* Upgrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Upgrader.m; sourceTree = "<group>"; };
 		92791E631073B71900865362 /* UpgradingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradingController.h; sourceTree = "<group>"; };
 		92791E641073B71900865362 /* UpgradingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradingController.m; sourceTree = "<group>"; };
 		92791E6E1073B87200865362 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/UpgradeWindow.xib; sourceTree = "<group>"; };
@@ -97,7 +78,9 @@
 		92A395A511F8B2A40003FFBE /* MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveAction.m; sourceTree = "<group>"; };
 		92B4C47B11FDC14600082766 /* ErrorPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorPresenter.h; sourceTree = "<group>"; };
 		92B4C47C11FDC14600082766 /* ErrorPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorPresenter.m; sourceTree = "<group>"; };
-		92CEBA58118C4C9B00C1070D /* UpgraderDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgraderDelegateProtocol.h; sourceTree = "<group>"; };
+		92CEBA58118C4C9B00C1070D /* UpgraderDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgraderDelegateProtocol.h; path = "Upgrading-Process/UpgraderDelegateProtocol.h"; sourceTree = "<group>"; };
+		92E1D51311FE195500C10E3D /* UpgradeContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeContent.h; path = "Upgrading-Process/UpgradeContent.h"; sourceTree = "<group>"; };
+		92E1D51411FE195500C10E3D /* UpgradeContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpgradeContent.m; path = "Upgrading-Process/UpgradeContent.m"; sourceTree = "<group>"; };
 		92F67F011075151400C59470 /* NSTextView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+Additions.h"; sourceTree = "<group>"; };
 		92F67F021075151400C59470 /* NSTextView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+Additions.m"; sourceTree = "<group>"; };
 		92F67F9710764F6200C59470 /* xampp-upgrader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "xampp-upgrader"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +115,7 @@
 		080E96DDFE201D6D7F000001 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				92E1D52D11FE294700C10E3D /* Upgrade */,
 				92F67F8810764C1300C59470 /* Upgrading-Process */,
 				92F67F7810763D8E00C59470 /* Views */,
 				92F67F7710763D7C00C59470 /* Additions */,
@@ -229,6 +213,20 @@
 				92A395A511F8B2A40003FFBE /* MoveAction.m */,
 			);
 			name = Actions;
+			path = "Upgrading-Process";
+			sourceTree = "<group>";
+		};
+		92E1D52D11FE294700C10E3D /* Upgrade */ = {
+			isa = PBXGroup;
+			children = (
+				92A3952711F89AED0003FFBE /* Actions */,
+				92E1D51311FE195500C10E3D /* UpgradeContent.h */,
+				92E1D51411FE195500C10E3D /* UpgradeContent.m */,
+				926A188411FE3A3400EA9D0E /* Upgrader.h */,
+				926A188511FE3A3400EA9D0E /* Upgrader.m */,
+				92CEBA58118C4C9B00C1070D /* UpgraderDelegateProtocol.h */,
+			);
+			name = Upgrade;
 			sourceTree = "<group>";
 		};
 		92F67F7710763D7C00C59470 /* Additions */ = {
@@ -256,11 +254,9 @@
 		92F67F8810764C1300C59470 /* Upgrading-Process */ = {
 			isa = PBXGroup;
 			children = (
-				92A3952711F89AED0003FFBE /* Actions */,
 				92F67FA51076505900C59470 /* main.m */,
 				92F680481076583400C59470 /* Upgrader.h */,
 				92F680491076583400C59470 /* Upgrader.m */,
-				92CEBA58118C4C9B00C1070D /* UpgraderDelegateProtocol.h */,
 				921FC54B10789CF700516F83 /* AccessControl.h */,
 				921FC54C10789CF700516F83 /* AccessControl.m */,
 				921FC54E10789D0500516F83 /* AccessControlProtocol.h */,
@@ -278,12 +274,10 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				92F67FA010764FE200C59470 /* Executables */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				92F67FA310764FEE00C59470 /* PBXTargetDependency */,
 			);
 			name = "XAMPP Upgrader";
 			productInstallPath = "$(HOME)/Applications";
@@ -351,6 +345,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926A187211FE357600EA9D0E /* Action.m in Sources */,
+				926A187311FE357600EA9D0E /* PatchAction.m in Sources */,
+				926A187411FE357600EA9D0E /* MoveAction.m in Sources */,
+				92E1D52E11FE2A1300C10E3D /* UpgradeContent.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* XAMPP_UpgraderAppDelegate.m in Sources */,
 				92791E651073B71900865362 /* UpgradingController.m in Sources */,
@@ -359,6 +357,7 @@
 				921FC51C1078982C00516F83 /* NSObject+Additions.m in Sources */,
 				921FC5201078985B00516F83 /* XPMainThreadProxy.m in Sources */,
 				92B4C47E11FDC14600082766 /* ErrorPresenter.m in Sources */,
+				926A188611FE3A3400EA9D0E /* Upgrader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,18 +371,11 @@
 				92A3952D11F89BA80003FFBE /* Action.m in Sources */,
 				92A3954711F89FFF0003FFBE /* PatchAction.m in Sources */,
 				92A395A611F8B2A40003FFBE /* MoveAction.m in Sources */,
+				92E1D51511FE195500C10E3D /* UpgradeContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		92F67FA310764FEE00C59470 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 92F67F9610764F6200C59470 /* xampp-upgrader */;
-			targetProxy = 92F67FA210764FEE00C59470 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {

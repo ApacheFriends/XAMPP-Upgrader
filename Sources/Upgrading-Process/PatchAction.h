@@ -27,16 +27,21 @@
 #import "Action.h"
 
 typedef enum {
-	BinaryPatch,
-	TextPatch
+    UnknownPatchType=-1,
+	BinaryPatch = 1,
+	TextPatch = 2
 } PatchType;
+
+NSString* NSStringFromPatchType(PatchType type);
+PatchType PatchTypeFromNSString(NSString* string);
 
 @interface PatchAction : Action {
 	NSString*	patchFile;
 	NSString*	path;
-	PatchType   type;
     NSString*   sourceSHA1;
     NSString*   targetSHA1;
+    
+    PatchType   type;
 }
 
 @property(copy) NSString* patchFile;

@@ -32,6 +32,7 @@
 #import "Upgrader.h"
 #import "AccessControlProtocol.h"
 
+#import "Upgrader.h"
 #import "UpgradeErrors.h"
 #import "ErrorPresenter.h"
 
@@ -187,35 +188,23 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	/* We're here in a new thread so we need our own Pool ;) */
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSError* error = Nil;
-	Upgrader* upgrader;
-    
-	/* Starting our helper process that runs as root */
-	[[self progressSubtext] setStringValue:NSLocalizedStringFromTable(@"Authorize",
-																	  @"Upgrade",
-																	  @"Action description displayed when the user is asked to authorize.")];
-	upgrader = [self newUpgradeHelperWithError:&error];
-	if (!upgrader) {
-		[self handleError:error];
-		[pool release];
-		return;
-	}
+    Upgrader* upgrader;
 	
 	@try {
-		/* Ok, we now have our Upgrader process. */
-		
-		[upgrader setDelegate:self];
-		
-		// Run the real upgrade
-		if (![upgrader upgrade])
-			[self handleError:[upgrader upgradeError]];
-		
+        upgrader = [[Upgrader alloc] initWithPath:@"/Users/kleinweby/Desktop/upgrade-test/test.upgrade"];
+        
+        upgrader.delegate = self;
+        
+        if (![upgrader prepare]) {
+            [self handleError:upgrader.error];
+        }
 	}
 	@catch (NSException * e) {
 		// TODO: Error handling
 		NSLog(@"Got %@", e);
 	}
 	@finally {
-		[upgrader quit];
+        [upgrader release];
 		[[self mainThreadProxy] showView:XUWelcomeScreen];
 		[pool release];
 	}

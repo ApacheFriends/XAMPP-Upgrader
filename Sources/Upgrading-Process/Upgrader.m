@@ -42,11 +42,6 @@
 
 @interface Upgrader()
 
-- (void) setApplicationPath:(NSString*)path;
-- (void) setVersionFile:(NSString*)file;
-- (void) setVersion:(NSString*)version;
-- (void) setUpgradeableVersions:(NSSet*)versions;
-- (void) setActions:(NSArray*)actions;
 - (void) setUpgradeError:(NSError*)error;
 
 @end
@@ -104,13 +99,6 @@
 {
 	[tempDir release];
 	
-	[self setApplicationPath:Nil];
-	[self setVersionFile:Nil];
-	[self setVersion:Nil];
-	[self setUpgradeableVersions:Nil];
-	[self setActions:Nil];
-    [self setUpgradeError:Nil];
-	
 	[super dealloc];
 }
 
@@ -121,64 +109,10 @@
 	exit(0);
 }
 
-- (NSString*) applicationPath
-{
-	return applicationPath;
-}
-
-- (NSString*) versionFile
-{
-	return versionFile;
-}
-
-- (NSString*) version
-{
-	return version;
-}
-
-- (NSSet*) upgradeableVersions
-{
-	return upgradeableVersions;
-}
-
-- (NSArray*) actions
-{
-	return actions;
-}
-
 - (NSError *)upgradeError {
     return upgradeError;
 }
 
-- (void) setApplicationPath:(NSString*)path
-{
-	[applicationPath release];
-	applicationPath = [path copy];
-}
-
-- (void) setVersionFile:(NSString*)file
-{
-	[versionFile release];
-	versionFile = [file copy];
-}
-
-- (void) setVersion:(NSString*)_version
-{
-	[version release];
-	version = [_version copy];
-}
-
-- (void) setUpgradeableVersions:(NSSet*)versions
-{
-	[upgradeableVersions release];
-	upgradeableVersions = [versions copy];
-}
-
-- (void) setActions:(NSArray*)_actions
-{
-	[actions release];
-	actions = [_actions copy];
-}
 
 - (void)setUpgradeError:(NSError *)error
 {
@@ -311,8 +245,6 @@
 	
 	[elementStack release];
 	elementStack = Nil;
-	
-	NSLog(@"appPath %@ versionFile %@ version %@ %@\n actions %i", applicationPath, versionFile, version, upgradeableVersions, [actions count]);
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName 

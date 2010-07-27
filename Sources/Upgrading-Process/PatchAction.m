@@ -25,6 +25,35 @@
 
 #import "PatchAction.h"
 
+NSString* NSStringFromPatchType(PatchType type)
+{
+    switch(type) {
+        case BinaryPatch:
+            return @"binary";
+            break;
+        case TextPatch:
+            return @"text";
+            break;
+        case UnknownPatchType:
+            return Nil;
+    }
+    
+    return Nil;
+}
+
+PatchType PatchTypeFromNSString(NSString* string)
+{
+    if ([string isLike:@"binary"]) {
+        return BinaryPatch;
+    }
+    else if ([string isLike:@"text"]) {
+        return TextPatch;
+    }
+    else {
+        return UnknownPatchType;
+    }
+}
+
 @implementation PatchAction
 
 @synthesize patchFile;
@@ -37,15 +66,14 @@
 {
 	self = [super initWithAttributes:attrs];
 	if (self != nil) {
+        /* Required stuff */
 		self.patchFile = [attrs objectForKey:@"patch-file"];
 		self.path = [attrs objectForKey:@"path"];
-		if ([[attrs objectForKey:@"type"] isCaseInsensitiveLike:@"text"]) {
-			self.type = TextPatch;
-		} else if ([[attrs objectForKey:@"type"] isCaseInsensitiveLike:@"binary"]) {
-			self.type = BinaryPatch;
-		} else {
-			// TODO: Errorhandling
-		}
+        self.type = PatchTypeFromNSString([attrs objectForKey:@"type"]);
+		
+        /* Optional stuff */
+        self.sourceSHA1 = [attrs objectForKey:@"source-sha1"];
+        self.targetSHA1 = [attrs objectForKey:@"target-sha1"];
 	}
 	return self;
 }

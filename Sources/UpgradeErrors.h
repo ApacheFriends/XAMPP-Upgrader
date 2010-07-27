@@ -23,7 +23,7 @@
  
  */
 
-NSString* UpgradeErrorDomain = @"UpgradeErrorDomain";
+static NSString* UpgradeErrorDomain = @"UpgradeErrorDomain";
 
 enum {
 	/* Upgrade corrupt errors */
@@ -40,4 +40,8 @@ enum {
 	errGetTempDir = 7001,
 	errCreateTempDir = 7002,
 	errRemoveTempDir = 7003,
+    
+    errAlreadyUptToDate = 8001,
+    errNoDowngrade,
+    errNotUpgradable
 };

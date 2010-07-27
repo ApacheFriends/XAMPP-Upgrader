@@ -27,6 +27,7 @@
 #import "UpgraderDelegateProtocol.h"
 
 @class UpgradingController;
+@class UpgradeContent;
 @class Action;
 
 @interface Upgrader : NSObject {
@@ -34,11 +35,7 @@
 	
 	NSString*				tempDir;
 	
-	NSString*				applicationPath;
-	NSString*				versionFile;
-	NSString*				version;
-	NSSet*					upgradeableVersions;
-	NSArray*				actions;
+	UpgradeContent*         upgradeContent;
 	
     NSError*                upgradeError;
     
@@ -57,11 +54,5 @@
 - (NSError*) upgradeError;
 
 - (oneway void) quit;
-
-- (NSString*) applicationPath;
-- (NSString*) versionFile;
-- (NSString*) version;
-- (NSSet*) upgradeableVersions;
-- (NSArray*) actions;
 
 @end

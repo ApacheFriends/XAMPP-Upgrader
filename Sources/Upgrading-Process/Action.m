@@ -29,6 +29,8 @@
 
 @implementation Action
 
+@synthesize upgrader;
+
 + (NSSet*) knownActions
 {
 	return [NSSet setWithArray:[[self actionsClasses] allKeys]];
@@ -64,7 +66,8 @@
 
 - (void) dealloc
 {
-	
+	self.upgrader = Nil;
+    
 	[super dealloc];
 }
 

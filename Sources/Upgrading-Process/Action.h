@@ -25,8 +25,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Upgrader;
 
 @interface Action : NSObject {
+    Upgrader* upgrader;
 }
 
 + (NSSet*) knownActions;
@@ -40,5 +42,7 @@
 - (id) initWithAttributes:(NSDictionary*)attributes;
 
 - (BOOL) applyWithError:(NSError**)errorOrNil;
+
+@property(assign) Upgrader* upgrader;
 
 @end
