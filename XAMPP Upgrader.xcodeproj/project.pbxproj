@@ -13,6 +13,12 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		92039D9411FDD72F00F803F9 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92039D9611FDD72F00F803F9 /* Errors.strings */; };
+		92148998123523C200A79C09 /* CommunicationLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 92148996123523C200A79C09 /* CommunicationLib.h */; };
+		92148999123523C200A79C09 /* CommunicationLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 92148997123523C200A79C09 /* CommunicationLib.m */; };
+		921489BC1235256900A79C09 /* libCommunicationLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9214898E1235239900A79C09 /* libCommunicationLib.a */; };
+		921489DE1235281800A79C09 /* libCommunicationLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9214898E1235239900A79C09 /* libCommunicationLib.a */; };
+		921489E41235282E00A79C09 /* root-helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 921489DA1235280C00A79C09 /* root-helper */; };
+		921489EC1235285C00A79C09 /* root-helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 921489EB1235285C00A79C09 /* root-helper.m */; };
 		921FC51C1078982C00516F83 /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FC51B1078982C00516F83 /* NSObject+Additions.m */; };
 		921FC5201078985B00516F83 /* XPMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FC51F1078985B00516F83 /* XPMainThreadProxy.m */; };
 		921FC5261078993300516F83 /* Upgrade.strings in Resources */ = {isa = PBXBuildFile; fileRef = 921FC5251078993300516F83 /* Upgrade.strings */; };
@@ -40,6 +46,43 @@
 		92F6804A1076583400C59470 /* Upgrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F680491076583400C59470 /* Upgrader.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		921489BA1235256600A79C09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9214898D1235239900A79C09 /* CommunicationLib */;
+			remoteInfo = CommunicationLib;
+		};
+		921489DF1235281A00A79C09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9214898D1235239900A79C09 /* CommunicationLib */;
+			remoteInfo = CommunicationLib;
+		};
+		921489E11235281C00A79C09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 921489D91235280C00A79C09 /* root-helper */;
+			remoteInfo = "root-helper";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		921489E91235284100A79C09 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				921489E41235282E00A79C09 /* root-helper in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -55,6 +98,13 @@
 		8D1107320486CEB800E47090 /* XAMPP Upgrader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XAMPP Upgrader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92039D9511FDD72F00F803F9 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
 		92097743118C83AE004045FD /* UpgradeErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeErrors.h; sourceTree = "<group>"; };
+		9214897D1235229B00A79C09 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BetterAuthorizationSampleLib.c; path = ../../Downloads/BetterAuthorizationSample/BetterAuthorizationSampleLib.c; sourceTree = SOURCE_ROOT; };
+		9214897E1235229B00A79C09 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BetterAuthorizationSampleLib.h; path = ../../Downloads/BetterAuthorizationSample/BetterAuthorizationSampleLib.h; sourceTree = SOURCE_ROOT; };
+		9214898E1235239900A79C09 /* libCommunicationLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCommunicationLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		92148996123523C200A79C09 /* CommunicationLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationLib.h; sourceTree = "<group>"; };
+		92148997123523C200A79C09 /* CommunicationLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationLib.m; sourceTree = "<group>"; };
+		921489DA1235280C00A79C09 /* root-helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "root-helper"; sourceTree = BUILT_PRODUCTS_DIR; };
+		921489EB1235285C00A79C09 /* root-helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "root-helper.m"; sourceTree = "<group>"; };
 		921FC51A1078982C00516F83 /* NSObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Additions.h"; sourceTree = "<group>"; };
 		921FC51B1078982C00516F83 /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		921FC51E1078985B00516F83 /* XPMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMainThreadProxy.h; sourceTree = "<group>"; };
@@ -98,8 +148,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				921489BC1235256900A79C09 /* libCommunicationLib.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				92F67FD61076532500C59470 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9214898C1235239900A79C09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921489D81235280C00A79C09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				921489DE1235281800A79C09 /* libCommunicationLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +184,8 @@
 		080E96DDFE201D6D7F000001 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				921489E71235284100A79C09 /* RootHelper */,
+				92148995123523A200A79C09 /* CommunicationLib */,
 				92E1D52D11FE294700C10E3D /* Upgrade */,
 				92F67F8810764C1300C59470 /* Upgrading-Process */,
 				92F67F7810763D8E00C59470 /* Views */,
@@ -159,6 +227,8 @@
 			children = (
 				8D1107320486CEB800E47090 /* XAMPP Upgrader.app */,
 				92F67F9710764F6200C59470 /* xampp-upgrader */,
+				9214898E1235239900A79C09 /* libCommunicationLib.a */,
+				921489DA1235280C00A79C09 /* root-helper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,6 +236,8 @@
 		29B97314FDCFA39411CA2CEA /* XAMPP Upgrader */ = {
 			isa = PBXGroup;
 			children = (
+				9214897D1235229B00A79C09 /* BetterAuthorizationSampleLib.c */,
+				9214897E1235229B00A79C09 /* BetterAuthorizationSampleLib.h */,
 				080E96DDFE201D6D7F000001 /* Sources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -205,6 +277,23 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92148995123523A200A79C09 /* CommunicationLib */ = {
+			isa = PBXGroup;
+			children = (
+				92148996123523C200A79C09 /* CommunicationLib.h */,
+				92148997123523C200A79C09 /* CommunicationLib.m */,
+			);
+			name = CommunicationLib;
+			sourceTree = "<group>";
+		};
+		921489E71235284100A79C09 /* RootHelper */ = {
+			isa = PBXGroup;
+			children = (
+				921489EB1235285C00A79C09 /* root-helper.m */,
+			);
+			name = RootHelper;
 			sourceTree = "<group>";
 		};
 		92A3952711F89AED0003FFBE /* Actions */ = {
@@ -271,6 +360,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		9214898A1235239900A79C09 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92148998123523C200A79C09 /* CommunicationLib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		8D1107260486CEB800E47090 /* XAMPP Upgrader */ = {
 			isa = PBXNativeTarget;
@@ -279,16 +379,53 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				921489E91235284100A79C09 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				921489E21235281C00A79C09 /* PBXTargetDependency */,
+				921489BB1235256600A79C09 /* PBXTargetDependency */,
 			);
 			name = "XAMPP Upgrader";
 			productInstallPath = "$(HOME)/Applications";
 			productName = "XAMPP Upgrader";
 			productReference = 8D1107320486CEB800E47090 /* XAMPP Upgrader.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9214898D1235239900A79C09 /* CommunicationLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 921489941235239D00A79C09 /* Build configuration list for PBXNativeTarget "CommunicationLib" */;
+			buildPhases = (
+				9214898A1235239900A79C09 /* Headers */,
+				9214898B1235239900A79C09 /* Sources */,
+				9214898C1235239900A79C09 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CommunicationLib;
+			productName = CommunicationLib;
+			productReference = 9214898E1235239900A79C09 /* libCommunicationLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		921489D91235280C00A79C09 /* root-helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 921489E81235284100A79C09 /* Build configuration list for PBXNativeTarget "root-helper" */;
+			buildPhases = (
+				921489D71235280C00A79C09 /* Sources */,
+				921489D81235280C00A79C09 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				921489E01235281A00A79C09 /* PBXTargetDependency */,
+			);
+			name = "root-helper";
+			productName = "root-helper";
+			productReference = 921489DA1235280C00A79C09 /* root-helper */;
+			productType = "com.apple.product-type.tool";
 		};
 		92F67F9610764F6200C59470 /* xampp-upgrader */ = {
 			isa = PBXNativeTarget;
@@ -324,6 +461,8 @@
 			targets = (
 				8D1107260486CEB800E47090 /* XAMPP Upgrader */,
 				92F67F9610764F6200C59470 /* xampp-upgrader */,
+				9214898D1235239900A79C09 /* CommunicationLib */,
+				921489D91235280C00A79C09 /* root-helper */,
 			);
 		};
 /* End PBXProject section */
@@ -366,6 +505,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9214898B1235239900A79C09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92148999123523C200A79C09 /* CommunicationLib.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921489D71235280C00A79C09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				921489EC1235285C00A79C09 /* root-helper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92F67F9410764F6200C59470 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +536,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		921489BB1235256600A79C09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9214898D1235239900A79C09 /* CommunicationLib */;
+			targetProxy = 921489BA1235256600A79C09 /* PBXContainerItemProxy */;
+		};
+		921489E01235281A00A79C09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9214898D1235239900A79C09 /* CommunicationLib */;
+			targetProxy = 921489DF1235281A00A79C09 /* PBXContainerItemProxy */;
+		};
+		921489E21235281C00A79C09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 921489D91235280C00A79C09 /* root-helper */;
+			targetProxy = 921489E11235281C00A79C09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -434,6 +607,102 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9214898F1235239A00A79C09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				PRODUCT_NAME = CommunicationLib;
+			};
+			name = Debug;
+		};
+		921489901235239A00A79C09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = "";
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				PRODUCT_NAME = CommunicationLib;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		921489DC1235280C00A79C09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "root-helper";
+			};
+			name = Debug;
+		};
+		921489DD1235280C00A79C09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "root-helper";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		92F67F9910764F6200C59470 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -491,6 +760,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XAMPP_Upgrader_Prefix.pch;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "XAMPP_Upgrader-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "XAMPP Upgrader";
@@ -505,6 +775,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XAMPP_Upgrader_Prefix.pch;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "XAMPP_Upgrader-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = "XAMPP Upgrader";
@@ -544,6 +815,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		921489941235239D00A79C09 /* Build configuration list for PBXNativeTarget "CommunicationLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9214898F1235239A00A79C09 /* Debug */,
+				921489901235239A00A79C09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		921489E81235284100A79C09 /* Build configuration list for PBXNativeTarget "root-helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				921489DC1235280C00A79C09 /* Debug */,
+				921489DD1235280C00A79C09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		92F67F9C10764F6B00C59470 /* Build configuration list for PBXNativeTarget "xampp-upgrader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

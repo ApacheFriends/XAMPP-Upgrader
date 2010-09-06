@@ -27,5 +27,6 @@
 
 int main(int argc, char *argv[])
 {
+	signal(SIGPIPE, SIG_IGN);
     return NSApplicationMain(argc,  (const char **) argv);
 }

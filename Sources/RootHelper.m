@@ -9,6 +9,7 @@
 #import <Security/Security.h>
 
 #import "RootHelper.h"
+#import "CommunicationLib.h"
 
 @interface RootHelper(PRIVATE)
 
@@ -45,7 +46,7 @@
 - (void) dealloc
 {
 	if (self.isHelperRunning)
-		NSLog(@"WARNING: Helper still running but Helper Class is beeing deallocated!");
+		NSLog(@"WARNING: Helper still running but Helper Class is being deallocated!");
 	
 	[super dealloc];
 }
@@ -53,6 +54,8 @@
 - (BOOL) startHelperError:(NSError**)errorOrNil
 {
 	AuthorizationRef authRef;
+	NSDictionary* response = Nil;
+	NSArray* descriptorArray;
 	NSString *helperTool;
 	FILE *pipe = NULL;
 	int status;
@@ -82,8 +85,41 @@
 	if (status != errAuthorizationSuccess) {
 		if (errorOrNil)
 			*errorOrNil = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-		return Nil;
+		return NO;
 	}
+	
+	// TODO: Check if pipe is NULL
+	
+	// Now we readin the socket we use to communicate with the helper
+	status = BASReadDictioanaryTranslatingDescriptors(fileno(pipe), &response);
+	if (status != 0 || response == Nil) {
+		
+		return NO;
+	}
+	NSLog(@"got %@", response);
+	descriptorArray = [response objectForKey:CFSTR(kBASDescriptorArrayKey)];
+	if (descriptorArray == Nil) {
+		
+		return NO;
+	}
+	
+	if ([descriptorArray count] < 1) {
+		return NO;
+	}
+	else if ([descriptorArray count] > 1) {
+		NSLog(@"More than one descriptor in array, using the first");
+	}
+	
+	__commFD = [[descriptorArray objectAtIndex:0] intValue];
+	
+	// Invalid descriptor
+	if (__commFD < 1) {
+		
+		return NO;
+	}
+	
+	__isHelperRunning = YES;
+	return YES;
 }
 
 - (BOOL) stopHelperError:(NSError**)errorOrNil

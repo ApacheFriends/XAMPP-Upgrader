@@ -35,6 +35,7 @@
 #import "Upgrader.h"
 #import "UpgradeErrors.h"
 #import "ErrorPresenter.h"
+#import "RootHelper.h"
 
 NSString* XUWelcomeScreen = @"XUWelcomeScreen";
 NSString* XUProgressScreen = @"XUProgressScreen";
@@ -188,16 +189,20 @@ NSString* XUProgressScreen = @"XUProgressScreen";
 	/* We're here in a new thread so we need our own Pool ;) */
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	NSError* error = Nil;
-    Upgrader* upgrader;
+    Upgrader* upgrader = Nil;
 	
 	@try {
-        upgrader = [[Upgrader alloc] initWithPath:@"/Users/kleinweby/Desktop/upgrade-test/test.upgrade"];
+		RootHelper* helper = [[RootHelper alloc] init];
+		
+		[helper startHelperError:Nil];
+		
+        /*upgrader = [[Upgrader alloc] initWithPath:@"/Users/kleinweby/Desktop/upgrade-test/test.upgrade"];
         
         upgrader.delegate = self;
         
         if (![upgrader prepare]) {
             [self handleError:upgrader.error];
-        }
+        }*/
 	}
 	@catch (NSException * e) {
 		// TODO: Error handling
