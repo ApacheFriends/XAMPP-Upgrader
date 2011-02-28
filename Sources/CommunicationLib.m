@@ -581,7 +581,7 @@ static int BASWriteDescriptor(int fd, int fdToWrite)
 }
 
 extern void BASCloseDescriptorArray(
-									CFArrayRef					descArray
+									NSArray*					descArray
 									)
 // See comment in header.
 {	

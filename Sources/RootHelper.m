@@ -126,6 +126,13 @@
 {
 }
 
+- (NSDictionary*) dispatchCommand:(NSString*)cmd 
+						 withArgs:(NSDictionary*)args 
+							error:(NSError**)errorOrNil
+{
+    
+}
+
 @end
 
 @implementation RootHelper(PRIVATE)

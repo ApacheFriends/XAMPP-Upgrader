@@ -51,21 +51,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9214898D1235239900A79C09 /* CommunicationLib */;
+			remoteGlobalIDString = 9214898D1235239900A79C09;
 			remoteInfo = CommunicationLib;
 		};
 		921489DF1235281A00A79C09 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9214898D1235239900A79C09 /* CommunicationLib */;
+			remoteGlobalIDString = 9214898D1235239900A79C09;
 			remoteInfo = CommunicationLib;
 		};
 		921489E11235281C00A79C09 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 921489D91235280C00A79C09 /* root-helper */;
+			remoteGlobalIDString = 921489D91235280C00A79C09;
 			remoteInfo = "root-helper";
 		};
 /* End PBXContainerItemProxy section */
@@ -98,8 +98,6 @@
 		8D1107320486CEB800E47090 /* XAMPP Upgrader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XAMPP Upgrader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92039D9511FDD72F00F803F9 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
 		92097743118C83AE004045FD /* UpgradeErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeErrors.h; sourceTree = "<group>"; };
-		9214897D1235229B00A79C09 /* BetterAuthorizationSampleLib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BetterAuthorizationSampleLib.c; path = ../../Downloads/BetterAuthorizationSample/BetterAuthorizationSampleLib.c; sourceTree = SOURCE_ROOT; };
-		9214897E1235229B00A79C09 /* BetterAuthorizationSampleLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BetterAuthorizationSampleLib.h; path = ../../Downloads/BetterAuthorizationSample/BetterAuthorizationSampleLib.h; sourceTree = SOURCE_ROOT; };
 		9214898E1235239900A79C09 /* libCommunicationLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCommunicationLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92148996123523C200A79C09 /* CommunicationLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationLib.h; sourceTree = "<group>"; };
 		92148997123523C200A79C09 /* CommunicationLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationLib.m; sourceTree = "<group>"; };
@@ -236,8 +234,6 @@
 		29B97314FDCFA39411CA2CEA /* XAMPP Upgrader */ = {
 			isa = PBXGroup;
 			children = (
-				9214897D1235229B00A79C09 /* BetterAuthorizationSampleLib.c */,
-				9214897E1235229B00A79C09 /* BetterAuthorizationSampleLib.h */,
 				080E96DDFE201D6D7F000001 /* Sources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -450,6 +446,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "XAMPP Upgrader" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
@@ -763,6 +760,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "XAMPP_Upgrader-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "XAMPP Upgrader";
 			};
 			name = Debug;
@@ -778,6 +776,7 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "XAMPP_Upgrader-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PRODUCT_NAME = "XAMPP Upgrader";
 			};
 			name = Release;

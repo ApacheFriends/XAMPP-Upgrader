@@ -13,3 +13,4 @@
 
 int BASReadDictioanaryTranslatingDescriptors(int fd, NSDictionary **dictPtr);
 int BASWriteDictionaryAndDescriptors(NSDictionary* dict, int fd);
+extern void BASCloseDescriptorArray(NSArray* descArray);

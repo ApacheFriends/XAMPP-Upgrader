@@ -67,7 +67,7 @@
         //  Error1032 and Error1032Info
         // then:
         //  Error103 and Error103Info
-        // till we found a message.
+        // untill we found a message.
         
         while (errorCode > 0 &&
                (messageText == Nil || informativeText == Nil)) {
